@@ -15,7 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+      
+        let window = application.windows.first
+        let drawer = window!.rootViewController as! MMDrawerController
+        drawer.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView
+        drawer.closeDrawerGestureModeMask = [MMCloseDrawerGestureMode.PanningCenterView,MMCloseDrawerGestureMode.TapCenterView]
+        
         return true
     }
 
