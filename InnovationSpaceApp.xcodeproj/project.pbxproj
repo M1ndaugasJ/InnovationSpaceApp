@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		033083621C038D8D0065CBFF /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033083611C038D8D0065CBFF /* SideMenuTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		033083641C0395300065CBFF /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033083631C0395300065CBFF /* SideMenuTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		033083671C061CF90065CBFF /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033083661C061CF90065CBFF /* SideMenuViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		033083691C063C280065CBFF /* NavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033083681C063C280065CBFF /* NavigationBarController.swift */; settings = {ASSET_TAGS = (); }; };
+		0330836B1C064FAF0065CBFF /* SideMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0330836A1C064FAF0065CBFF /* SideMenuButton.swift */; settings = {ASSET_TAGS = (); }; };
 		0397AAA51C03777800C80128 /* MMDrawerController+Storyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0397AAA41C03777800C80128 /* MMDrawerController+Storyboard.m */; settings = {ASSET_TAGS = (); }; };
 		03CBC6CC1C037C5C001581E5 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CBC6C71C037C5C001581E5 /* MMDrawerBarButtonItem.m */; settings = {ASSET_TAGS = (); }; };
 		03CBC6CD1C037C5C001581E5 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CBC6C81C037C5C001581E5 /* MMDrawerController.m */; settings = {ASSET_TAGS = (); }; };
 		03CBC6CE1C037C5C001581E5 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CBC6CB1C037C5C001581E5 /* UIViewController+MMDrawerController.m */; settings = {ASSET_TAGS = (); }; };
 		03CC03101C0326EC00458A05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC030F1C0326EC00458A05 /* AppDelegate.swift */; };
-		03CC03121C0326EC00458A05 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC03111C0326EC00458A05 /* ViewController.swift */; };
 		03CC03151C0326EC00458A05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03CC03131C0326EC00458A05 /* Main.storyboard */; };
 		03CC03171C0326EC00458A05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03CC03161C0326EC00458A05 /* Assets.xcassets */; };
 		03CC031A1C0326EC00458A05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03CC03181C0326EC00458A05 /* LaunchScreen.storyboard */; };
@@ -42,8 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		033083611C038D8D0065CBFF /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
-		033083631C0395300065CBFF /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
+		033083661C061CF90065CBFF /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		033083681C063C280065CBFF /* NavigationBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarController.swift; sourceTree = "<group>"; };
+		0330836A1C064FAF0065CBFF /* SideMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuButton.swift; sourceTree = "<group>"; };
 		0397AAA21C03777700C80128 /* InnovationSpaceApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InnovationSpaceApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		0397AAA31C03777800C80128 /* MMDrawerController+Storyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Storyboard.h"; sourceTree = "<group>"; };
 		0397AAA41C03777800C80128 /* MMDrawerController+Storyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMDrawerController+Storyboard.m"; sourceTree = "<group>"; };
@@ -56,7 +57,6 @@
 		03CBC6CB1C037C5C001581E5 /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
 		03CC030C1C0326EC00458A05 /* InnovationSpaceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InnovationSpaceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03CC030F1C0326EC00458A05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		03CC03111C0326EC00458A05 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		03CC03141C0326EC00458A05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		03CC03161C0326EC00458A05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03CC03191C0326EC00458A05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -138,15 +138,15 @@
 			children = (
 				033083651C03967D0065CBFF /* MMDrawer */,
 				03CC030F1C0326EC00458A05 /* AppDelegate.swift */,
-				03CC03111C0326EC00458A05 /* ViewController.swift */,
 				03CC03131C0326EC00458A05 /* Main.storyboard */,
+				033083681C063C280065CBFF /* NavigationBarController.swift */,
 				03CC03161C0326EC00458A05 /* Assets.xcassets */,
 				03CC03181C0326EC00458A05 /* LaunchScreen.storyboard */,
 				03CC031B1C0326EC00458A05 /* Info.plist */,
 				03CC033F1C03318900458A05 /* ChallengesViewController.swift */,
 				03CC03411C03319F00458A05 /* ProfileViewController.swift */,
-				033083611C038D8D0065CBFF /* SideMenuTableViewController.swift */,
-				033083631C0395300065CBFF /* SideMenuTableViewCell.swift */,
+				033083661C061CF90065CBFF /* SideMenuViewController.swift */,
+				0330836A1C064FAF0065CBFF /* SideMenuButton.swift */,
 			);
 			path = InnovationSpaceApp;
 			sourceTree = "<group>";
@@ -303,16 +303,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03CC03121C0326EC00458A05 /* ViewController.swift in Sources */,
 				03CBC6CC1C037C5C001581E5 /* MMDrawerBarButtonItem.m in Sources */,
 				03CBC6CD1C037C5C001581E5 /* MMDrawerController.m in Sources */,
 				03CBC6CE1C037C5C001581E5 /* UIViewController+MMDrawerController.m in Sources */,
-				033083621C038D8D0065CBFF /* SideMenuTableViewController.swift in Sources */,
-				033083641C0395300065CBFF /* SideMenuTableViewCell.swift in Sources */,
+				033083671C061CF90065CBFF /* SideMenuViewController.swift in Sources */,
+				033083691C063C280065CBFF /* NavigationBarController.swift in Sources */,
 				03CC03401C03318900458A05 /* ChallengesViewController.swift in Sources */,
 				0397AAA51C03777800C80128 /* MMDrawerController+Storyboard.m in Sources */,
 				03CC03421C03319F00458A05 /* ProfileViewController.swift in Sources */,
 				03CC03101C0326EC00458A05 /* AppDelegate.swift in Sources */,
+				0330836B1C064FAF0065CBFF /* SideMenuButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

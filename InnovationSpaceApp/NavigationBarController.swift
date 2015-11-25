@@ -1,18 +1,19 @@
 //
-//  ChallengesViewController.swift
+//  NavigationBarController.swift
 //  InnovationSpaceApp
 //
-//  Created by Mindaugas on 11/23/15.
+//  Created by Mindaugas on 11/25/15.
 //  Copyright © 2015 Mindaugas. All rights reserved.
 //
 
 import UIKit
 
-class ChallengesViewController: UIViewController {
+class NavigationBarController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.topViewController?.title = "eh"
+        addButton()
+       
         // Do any additional setup after loading the view.
     }
 
@@ -21,6 +22,17 @@ class ChallengesViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func addButton(){
+    
+        let barButtonItem : UIBarButtonItem = UIBarButtonItem(title: "Menu", style: UIBarButtonItemStyle.Plain, target: self, action: "clicked")
+        //self.navigationItem.leftBarButtonItem = barButtonItem
+        self.topViewController!.navigationItem.leftBarButtonItem = barButtonItem
+        
+    }
+    
+    func clicked(){
+        self.mm_drawerController.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
