@@ -22,6 +22,8 @@
 		03CC03301C0326EC00458A05 /* InnovationSpaceAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC032F1C0326EC00458A05 /* InnovationSpaceAppUITests.swift */; };
 		03CC03401C03318900458A05 /* ChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC033F1C03318900458A05 /* ChallengesViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		03CC03421C03319F00458A05 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC03411C03319F00458A05 /* ProfileViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		03D2D3DA1C15C6FB00A65289 /* ChallengesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2D3D91C15C6FB00A65289 /* ChallengesViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		03D2D3DC1C15C82F00A65289 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2D3DB1C15C82F00A65289 /* Challenge.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		03CC03311C0326EC00458A05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03CC033F1C03318900458A05 /* ChallengesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesViewController.swift; sourceTree = "<group>"; };
 		03CC03411C03319F00458A05 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		03D2D3D91C15C6FB00A65289 /* ChallengesViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesViewCell.swift; sourceTree = "<group>"; };
+		03D2D3DB1C15C82F00A65289 /* Challenge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,8 @@
 				03CC03181C0326EC00458A05 /* LaunchScreen.storyboard */,
 				03CC031B1C0326EC00458A05 /* Info.plist */,
 				03CC033F1C03318900458A05 /* ChallengesViewController.swift */,
+				03D2D3DB1C15C82F00A65289 /* Challenge.swift */,
+				03D2D3D91C15C6FB00A65289 /* ChallengesViewCell.swift */,
 				03CC03411C03319F00458A05 /* ProfileViewController.swift */,
 				033083661C061CF90065CBFF /* SideMenuViewController.swift */,
 				0330836A1C064FAF0065CBFF /* SideMenuButton.swift */,
@@ -304,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03CBC6CC1C037C5C001581E5 /* MMDrawerBarButtonItem.m in Sources */,
+				03D2D3DC1C15C82F00A65289 /* Challenge.swift in Sources */,
 				03CBC6CD1C037C5C001581E5 /* MMDrawerController.m in Sources */,
 				03CBC6CE1C037C5C001581E5 /* UIViewController+MMDrawerController.m in Sources */,
 				033083671C061CF90065CBFF /* SideMenuViewController.swift in Sources */,
@@ -313,6 +320,7 @@
 				03CC03421C03319F00458A05 /* ProfileViewController.swift in Sources */,
 				03CC03101C0326EC00458A05 /* AppDelegate.swift in Sources */,
 				0330836B1C064FAF0065CBFF /* SideMenuButton.swift in Sources */,
+				03D2D3DA1C15C6FB00A65289 /* ChallengesViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

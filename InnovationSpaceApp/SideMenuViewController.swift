@@ -16,6 +16,8 @@ class SideMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mm_drawerController.showsShadow = false
+        self.mm_drawerController.setMaximumLeftDrawerWidth(210, animated: true, completion: nil)
     }
     
     override func viewWillAppear(animated: Bool) {

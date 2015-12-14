@@ -40,7 +40,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrh-Di-rPU" customClass="SideMenuButton" customModule="InnovationSpaceApp" customModuleProvider="target">
-                                <rect key="frame" x="38" y="340" width="171" height="40"/>
+                                <rect key="frame" x="20" y="76" width="171" height="40"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="29"/>
                                 <state key="normal" title="Profile">
@@ -52,7 +52,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3xp-Ny-BD2" customClass="SideMenuButton" customModule="InnovationSpaceApp" customModuleProvider="target">
-                                <rect key="frame" x="38" y="292" width="171" height="40"/>
+                                <rect key="frame" x="20" y="28" width="171" height="40"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="29"/>
                                 <state key="normal" title="Challenges">
@@ -87,22 +87,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Challenges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upW-3S-d0b">
-                                <rect key="frame" x="258" y="289" width="85" height="21"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="203" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AGg-LT-9DA">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="challenge" rowHeight="201" id="kq3-G2-drO" customClass="ChallengesViewCell" customModule="InnovationSpaceApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="201"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kq3-G2-drO" id="HA3-Du-46F">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4E-ER-Edu">
+                                                    <rect key="frame" x="279" y="89" width="42" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="O4E-ER-Edu" firstAttribute="centerX" secondItem="HA3-Du-46F" secondAttribute="centerX" id="YfS-ea-7WO"/>
+                                                <constraint firstItem="O4E-ER-Edu" firstAttribute="centerY" secondItem="HA3-Du-46F" secondAttribute="centerY" id="xlM-3y-Ra3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="challengeName" destination="O4E-ER-Edu" id="Q9P-oR-VoG"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="bMZ-Sn-mde" id="ls5-Az-sgd"/>
+                                    <outlet property="delegate" destination="bMZ-Sn-mde" id="GMa-di-Mwe"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="upW-3S-d0b" firstAttribute="centerY" secondItem="x2I-5M-Avc" secondAttribute="centerY" id="kJ3-Ee-RdJ"/>
-                            <constraint firstItem="upW-3S-d0b" firstAttribute="centerX" secondItem="x2I-5M-Avc" secondAttribute="centerX" id="v0l-du-F4b"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="M05-bk-ACj"/>
+                    <connections>
+                        <outlet property="tableView" destination="AGg-LT-9DA" id="VC5-1R-32j"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VEi-wf-fyE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -147,7 +176,6 @@
         <!--Navigation Bar Controller-->
         <scene sceneID="PoY-zi-NgJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tGU-QR-Aek" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LGn-fy-PRv" customClass="NavigationBarController" customModule="InnovationSpaceApp" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0mE-tz-K29">
@@ -160,6 +188,7 @@
                         <segue destination="bMZ-Sn-mde" kind="relationship" relationship="rootViewController" id="qFd-pV-Atd"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tGU-QR-Aek" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-752" y="384"/>
         </scene>

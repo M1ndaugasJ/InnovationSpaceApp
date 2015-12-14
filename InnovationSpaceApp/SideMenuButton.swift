@@ -18,8 +18,12 @@ class SideMenuButton: UIButton {
     }
     */
     
-    override func drawRect(rect: CGRect) {
+    override func awakeFromNib() {
         layer.borderWidth = 0.5
+    }
+    
+    override func drawRect(rect: CGRect) {
+        
     }
     
     override var highlighted: Bool {
