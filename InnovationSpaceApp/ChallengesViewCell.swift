@@ -15,6 +15,7 @@ class ChallengesViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .Blue
         // Initialization code
     }
 

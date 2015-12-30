@@ -59,4 +59,19 @@ class SideMenuViewController: UIViewController {
         
     }
 
+    @IBAction func paginatedClicked(sender: UIButton) {
+        
+        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("paginatedChallenges") as! PaginatedChallengesViewController
+        
+        let navigationController = self.mm_drawerController.centerViewController as! NavigationBarController
+        
+        
+        navigationController.viewControllers = [viewController]
+        
+        self.mm_drawerController.centerViewController = navigationController
+        navigationController.addButton()
+        self.mm_drawerController.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+        
+    }
+    
 }

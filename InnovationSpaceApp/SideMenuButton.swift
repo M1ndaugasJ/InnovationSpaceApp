@@ -20,10 +20,12 @@ class SideMenuButton: UIButton {
     
     override func awakeFromNib() {
         layer.borderWidth = 0.5
+        layer.backgroundColor = UIColor.whiteColor().CGColor
     }
     
     override func drawRect(rect: CGRect) {
-        
+        //titleLabel?.font = UIFont(name: "Avenir-Thin", size: 39)
+        //titleLabel?.textColor = UIColor.blackColor()
     }
     
     override var highlighted: Bool {

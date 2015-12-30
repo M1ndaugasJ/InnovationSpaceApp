@@ -10,9 +10,11 @@ import UIKit
 
 class Challenge: NSObject {
     let name: String?
+    let photoName: String?
     
-    init(name: String){
+    init(name: String, photo: String){
         self.name = name
+        self.photoName = photo
     }
     
 }

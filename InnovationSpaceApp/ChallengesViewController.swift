@@ -16,17 +16,33 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.topViewController?.title = "eh"
+        self.navigationController?.topViewController?.title = "Challenges"
+        let barButtonItem : UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: Selector("btnOpenAddView"))
+        self.navigationController?.topViewController!.navigationItem.rightBarButtonItem = barButtonItem
+        barButtonItem.tintColor = UIColor.blackColor()
         // Do any additional setup after loading the view.
         
-        challenges.append(Challenge(name: "skiing"))
-        challenges.append(Challenge(name: "diving"))
-        challenges.append(Challenge(name: "jumping"))
-        challenges.append(Challenge(name: "sliding"))
+        challenges.append(Challenge(name: "skiing", photo: "photo1"))
+        challenges.append(Challenge(name: "diving", photo: "photo1"))
+        challenges.append(Challenge(name: "jumping", photo: "photo1"))
+        challenges.append(Challenge(name: "sliding", photo: "photo1"))
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        if let index = tableView.indexPathForSelectedRow {
+            tableView.deselectRowAtIndexPath(index, animated: true)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func btnOpenAddView(){
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("addChallengeViewController") as! AddChallengeViewController
+        self.presentViewController(vc, animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,29 +52,25 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("challenge", forIndexPath: indexPath) as! ChallengesViewCell
         cell.challengeName.text = challenges[indexPath.row].name
-        
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        self.performSegueWithIdentifier("challengeSegue", sender: tableView.cellForRowAtIndexPath(indexPath))
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if(section == 0){
-            return 0
-        }
+//        if(section == 0){
+//            return 0
+//        }
         return 0
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let challenge = segue.destinationViewController as! SingleChallengeViewController
+        if let challengeCell = sender as? ChallengesViewCell {
+            challenge.challengeName = challengeCell.challengeName.text
+        }
     }
-    */
 
 }
