@@ -7,29 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		033083671C061CF90065CBFF /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033083661C061CF90065CBFF /* SideMenuViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		033083691C063C280065CBFF /* NavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033083681C063C280065CBFF /* NavigationBarController.swift */; settings = {ASSET_TAGS = (); }; };
-		0330836B1C064FAF0065CBFF /* SideMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0330836A1C064FAF0065CBFF /* SideMenuButton.swift */; settings = {ASSET_TAGS = (); }; };
-		033827D81C3345410062BCF1 /* StratosParallaxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033827D71C3345410062BCF1 /* StratosParallaxView.swift */; settings = {ASSET_TAGS = (); }; };
-		0374EFD51C2459E200455D46 /* SingleChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0374EFD41C2459E100455D46 /* SingleChallengeViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		0374EFD91C30604F00455D46 /* AddChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0374EFD81C30604F00455D46 /* AddChallengeViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		0397AAA51C03777800C80128 /* MMDrawerController+Storyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0397AAA41C03777800C80128 /* MMDrawerController+Storyboard.m */; settings = {ASSET_TAGS = (); }; };
-		03B2ED9E1C31684100BBD4A7 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2ED9D1C31684100BBD4A7 /* CustomPresentationController.swift */; settings = {ASSET_TAGS = (); }; };
-		03B2EDA01C3168B500BBD4A7 /* CustomPresentationAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2ED9F1C3168B500BBD4A7 /* CustomPresentationAnimationController.swift */; settings = {ASSET_TAGS = (); }; };
-		03B2EDA41C31E50400BBD4A7 /* PaginatedChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2EDA31C31E50400BBD4A7 /* PaginatedChallengesViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		03CBC6CC1C037C5C001581E5 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CBC6C71C037C5C001581E5 /* MMDrawerBarButtonItem.m */; settings = {ASSET_TAGS = (); }; };
-		03CBC6CD1C037C5C001581E5 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CBC6C81C037C5C001581E5 /* MMDrawerController.m */; settings = {ASSET_TAGS = (); }; };
-		03CBC6CE1C037C5C001581E5 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CBC6CB1C037C5C001581E5 /* UIViewController+MMDrawerController.m */; settings = {ASSET_TAGS = (); }; };
+		033083671C061CF90065CBFF /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033083661C061CF90065CBFF /* SideMenuViewController.swift */; };
+		033083691C063C280065CBFF /* NavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033083681C063C280065CBFF /* NavigationBarController.swift */; };
+		0330836B1C064FAF0065CBFF /* SideMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0330836A1C064FAF0065CBFF /* SideMenuButton.swift */; };
+		0374EFD51C2459E200455D46 /* SingleChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0374EFD41C2459E100455D46 /* SingleChallengeViewController.swift */; };
+		037518761C468A800040F5E7 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037518751C468A800040F5E7 /* CameraController.swift */; };
+		0375187D1C46E72F0040F5E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0375187C1C46E72F0040F5E7 /* Assets.xcassets */; };
+		0397AAA51C03777800C80128 /* MMDrawerController+Storyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0397AAA41C03777800C80128 /* MMDrawerController+Storyboard.m */; };
+		03B2EDA41C31E50400BBD4A7 /* PaginatedChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2EDA31C31E50400BBD4A7 /* PaginatedChallengesViewController.swift */; };
+		03CBC6CC1C037C5C001581E5 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CBC6C71C037C5C001581E5 /* MMDrawerBarButtonItem.m */; };
+		03CBC6CD1C037C5C001581E5 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CBC6C81C037C5C001581E5 /* MMDrawerController.m */; };
+		03CBC6CE1C037C5C001581E5 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CBC6CB1C037C5C001581E5 /* UIViewController+MMDrawerController.m */; };
 		03CC03101C0326EC00458A05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC030F1C0326EC00458A05 /* AppDelegate.swift */; };
 		03CC03151C0326EC00458A05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03CC03131C0326EC00458A05 /* Main.storyboard */; };
-		03CC03171C0326EC00458A05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03CC03161C0326EC00458A05 /* Assets.xcassets */; };
 		03CC031A1C0326EC00458A05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03CC03181C0326EC00458A05 /* LaunchScreen.storyboard */; };
 		03CC03251C0326EC00458A05 /* InnovationSpaceAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC03241C0326EC00458A05 /* InnovationSpaceAppTests.swift */; };
 		03CC03301C0326EC00458A05 /* InnovationSpaceAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC032F1C0326EC00458A05 /* InnovationSpaceAppUITests.swift */; };
-		03CC03401C03318900458A05 /* ChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC033F1C03318900458A05 /* ChallengesViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		03CC03421C03319F00458A05 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC03411C03319F00458A05 /* ProfileViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		03D2D3DA1C15C6FB00A65289 /* ChallengesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2D3D91C15C6FB00A65289 /* ChallengesViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		03D2D3DC1C15C82F00A65289 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2D3DB1C15C82F00A65289 /* Challenge.swift */; settings = {ASSET_TAGS = (); }; };
+		03CC03421C03319F00458A05 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC03411C03319F00458A05 /* ProfileViewController.swift */; };
+		03D2D3DA1C15C6FB00A65289 /* ChallengesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2D3D91C15C6FB00A65289 /* ChallengesViewCell.swift */; };
+		03D2D3DC1C15C82F00A65289 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2D3DB1C15C82F00A65289 /* Challenge.swift */; };
 		97F9D0B19FCAB87192ADB052 /* Pods_InnovationSpaceApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A712B83CD9B235C4268A52 /* Pods_InnovationSpaceApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,14 +50,12 @@
 		033083661C061CF90065CBFF /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		033083681C063C280065CBFF /* NavigationBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarController.swift; sourceTree = "<group>"; };
 		0330836A1C064FAF0065CBFF /* SideMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuButton.swift; sourceTree = "<group>"; };
-		033827D71C3345410062BCF1 /* StratosParallaxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StratosParallaxView.swift; sourceTree = "<group>"; };
 		0374EFD41C2459E100455D46 /* SingleChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleChallengeViewController.swift; sourceTree = "<group>"; };
-		0374EFD81C30604F00455D46 /* AddChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddChallengeViewController.swift; sourceTree = "<group>"; };
+		037518751C468A800040F5E7 /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		0375187C1C46E72F0040F5E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0397AAA21C03777700C80128 /* InnovationSpaceApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InnovationSpaceApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		0397AAA31C03777800C80128 /* MMDrawerController+Storyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Storyboard.h"; sourceTree = "<group>"; };
 		0397AAA41C03777800C80128 /* MMDrawerController+Storyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMDrawerController+Storyboard.m"; sourceTree = "<group>"; };
-		03B2ED9D1C31684100BBD4A7 /* CustomPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
-		03B2ED9F1C3168B500BBD4A7 /* CustomPresentationAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPresentationAnimationController.swift; sourceTree = "<group>"; };
 		03B2EDA31C31E50400BBD4A7 /* PaginatedChallengesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedChallengesViewController.swift; sourceTree = "<group>"; };
 		03CBC6C51C037C5C001581E5 /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
 		03CBC6C61C037C5C001581E5 /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
@@ -73,7 +67,6 @@
 		03CC030C1C0326EC00458A05 /* InnovationSpaceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InnovationSpaceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03CC030F1C0326EC00458A05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03CC03141C0326EC00458A05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		03CC03161C0326EC00458A05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03CC03191C0326EC00458A05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03CC031B1C0326EC00458A05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03CC03201C0326EC00458A05 /* InnovationSpaceAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnovationSpaceAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,7 +75,6 @@
 		03CC032B1C0326EC00458A05 /* InnovationSpaceAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InnovationSpaceAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03CC032F1C0326EC00458A05 /* InnovationSpaceAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnovationSpaceAppUITests.swift; sourceTree = "<group>"; };
 		03CC03311C0326EC00458A05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03CC033F1C03318900458A05 /* ChallengesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesViewController.swift; sourceTree = "<group>"; };
 		03CC03411C03319F00458A05 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		03D2D3D91C15C6FB00A65289 /* ChallengesViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesViewCell.swift; sourceTree = "<group>"; };
 		03D2D3DB1C15C82F00A65289 /* Challenge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
@@ -161,23 +153,19 @@
 			children = (
 				033083651C03967D0065CBFF /* MMDrawer */,
 				03CC030F1C0326EC00458A05 /* AppDelegate.swift */,
-				033827D71C3345410062BCF1 /* StratosParallaxView.swift */,
 				03CC03131C0326EC00458A05 /* Main.storyboard */,
 				033083681C063C280065CBFF /* NavigationBarController.swift */,
-				03CC03161C0326EC00458A05 /* Assets.xcassets */,
 				03CC03181C0326EC00458A05 /* LaunchScreen.storyboard */,
 				03CC031B1C0326EC00458A05 /* Info.plist */,
-				03CC033F1C03318900458A05 /* ChallengesViewController.swift */,
 				03D2D3DB1C15C82F00A65289 /* Challenge.swift */,
 				03D2D3D91C15C6FB00A65289 /* ChallengesViewCell.swift */,
 				03CC03411C03319F00458A05 /* ProfileViewController.swift */,
 				033083661C061CF90065CBFF /* SideMenuViewController.swift */,
 				0330836A1C064FAF0065CBFF /* SideMenuButton.swift */,
 				0374EFD41C2459E100455D46 /* SingleChallengeViewController.swift */,
-				0374EFD81C30604F00455D46 /* AddChallengeViewController.swift */,
-				03B2ED9D1C31684100BBD4A7 /* CustomPresentationController.swift */,
-				03B2ED9F1C3168B500BBD4A7 /* CustomPresentationAnimationController.swift */,
 				03B2EDA31C31E50400BBD4A7 /* PaginatedChallengesViewController.swift */,
+				037518751C468A800040F5E7 /* CameraController.swift */,
+				0375187C1C46E72F0040F5E7 /* Assets.xcassets */,
 			);
 			path = InnovationSpaceApp;
 			sourceTree = "<group>";
@@ -328,7 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03CC031A1C0326EC00458A05 /* LaunchScreen.storyboard in Resources */,
-				03CC03171C0326EC00458A05 /* Assets.xcassets in Resources */,
+				0375187D1C46E72F0040F5E7 /* Assets.xcassets in Resources */,
 				03CC03151C0326EC00458A05 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,22 +391,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				03CBC6CC1C037C5C001581E5 /* MMDrawerBarButtonItem.m in Sources */,
-				03B2EDA01C3168B500BBD4A7 /* CustomPresentationAnimationController.swift in Sources */,
 				03D2D3DC1C15C82F00A65289 /* Challenge.swift in Sources */,
 				03CBC6CD1C037C5C001581E5 /* MMDrawerController.m in Sources */,
-				033827D81C3345410062BCF1 /* StratosParallaxView.swift in Sources */,
 				0374EFD51C2459E200455D46 /* SingleChallengeViewController.swift in Sources */,
 				03CBC6CE1C037C5C001581E5 /* UIViewController+MMDrawerController.m in Sources */,
 				033083671C061CF90065CBFF /* SideMenuViewController.swift in Sources */,
 				03B2EDA41C31E50400BBD4A7 /* PaginatedChallengesViewController.swift in Sources */,
 				033083691C063C280065CBFF /* NavigationBarController.swift in Sources */,
-				03CC03401C03318900458A05 /* ChallengesViewController.swift in Sources */,
-				03B2ED9E1C31684100BBD4A7 /* CustomPresentationController.swift in Sources */,
-				0374EFD91C30604F00455D46 /* AddChallengeViewController.swift in Sources */,
 				0397AAA51C03777800C80128 /* MMDrawerController+Storyboard.m in Sources */,
 				03CC03421C03319F00458A05 /* ProfileViewController.swift in Sources */,
 				03CC03101C0326EC00458A05 /* AppDelegate.swift in Sources */,
 				0330836B1C064FAF0065CBFF /* SideMenuButton.swift in Sources */,
+				037518761C468A800040F5E7 /* CameraController.swift in Sources */,
 				03D2D3DA1C15C6FB00A65289 /* ChallengesViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

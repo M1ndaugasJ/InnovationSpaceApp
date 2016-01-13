@@ -7,20 +7,54 @@
 //
 
 import UIKit
+import Spring
 
 class PaginatedChallengesViewController: UIViewController, UIScrollViewDelegate {
+    
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet weak var addChallengeView: UIView!
+    @IBOutlet weak var dimmingView: UIView! {
+        didSet{
+            dimmingView.backgroundColor = UIColor(red: 200/255.0, green: 199/255.0, blue: 204/255.0, alpha: 0.5)
+            dimmingView.alpha = 0.0
+        }
+    }
+    
     var pageImages: [Challenge] = []
     var pageViews: [SingleChallengeViewController?] = []
+    var addChallengeButtonImageView: UIImageView?
+    var addChallengesBarButtonItem: UIBarButtonItem?
+    var cameraController : CameraController?
+    var isAddChallengesOpen = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false;
         self.scrollView.contentInset = UIEdgeInsetsMake(0,0,0,0);
+        self.scrollView.showsHorizontalScrollIndicator = false
+        self.scrollView.bounces = true
+        
         self.navigationController?.topViewController?.title = "Challenges"
-        let barButtonItem : UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: Selector("btnOpenAddView"))
-        self.navigationController?.topViewController!.navigationItem.rightBarButtonItem = barButtonItem
-        barButtonItem.tintColor = UIColor.blackColor()
+        addChallengeButtonImageView = UIImageView(image: UIImage(named: "addpng"))
+        addChallengeButtonImageView?.autoresizingMask = .None
+        addChallengeButtonImageView?.contentMode = .Center
+        
+        let button = UIButton(type: .Custom)
+        button.frame = CGRectMake(0, 0, 40, 40)
+        button.addSubview(addChallengeButtonImageView!)
+        button.addTarget(self, action: Selector("btnOpenAddView"), forControlEvents: .TouchUpInside)
+        
+        addChallengeButtonImageView?.center = button.center
+        addChallengesBarButtonItem = UIBarButtonItem(customView: button)
+        
+        self.navigationController?.topViewController?.navigationItem.rightBarButtonItem = addChallengesBarButtonItem
+        
+        self.cameraController = CameraController(dismissalHandler: {
+                self.dismissViewControllerAnimated(false, completion: nil)
+            }, presentCameraHandler: {
+                self.presentViewController(self.cameraController!.imagePicker, animated: true, completion: {})
+                self.btnOpenAddView()
+        })
         
         pageImages = [Challenge(name: "skiing", photo: "photo1"), Challenge(name: "flying", photo: "photo2"), Challenge(name: "deving", photo: "photo3")]
         let pageCount = pageImages.count
@@ -93,8 +127,29 @@ class PaginatedChallengesViewController: UIViewController, UIScrollViewDelegate 
     }
     
     func btnOpenAddView(){
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("addChallengeViewController") as! AddChallengeViewController
-        self.presentViewController(vc, animated: true, completion: nil)
+        UIView.animateWithDuration(0.1, animations: {
+                self.addChallengeButtonImageView!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_4))
+            }, completion: {
+                completed in
+                self.addChallengeButtonImageView!.transform = CGAffineTransformMakeRotation(CGFloat(0))
+                if self.addChallengeButtonImageView!.image == UIImage(named: "addpng") {
+                    self.addChallengeButtonImageView!.image = UIImage(named: "closepropper")
+                    UIView.animateWithDuration(0.1, animations: {
+                        self.isAddChallengesOpen = true
+                        self.navigationController?.topViewController?.title = "Add a"
+                        self.dimmingView.alpha = 1
+                        self.addChallengeView.frame = CGRectMake(0, self.addChallengeView.frame.size.height/2, self.addChallengeView.frame.size.width, self.addChallengeView.frame.size.height)
+                    })
+                } else {
+                    self.addChallengeButtonImageView!.image = UIImage(named: "addpng")
+                    UIView.animateWithDuration(0.3, animations: {
+                        self.isAddChallengesOpen = false
+                        self.navigationController?.topViewController?.title = "Challenges"
+                        self.dimmingView.alpha = 0
+                        self.addChallengeView.frame = CGRectMake(0, -self.addChallengeView.frame.size.height/2, self.addChallengeView.frame.size.width, self.addChallengeView.frame.size.height)
+                    })
+                }
+        })
     }
     
     func purgePage(page: Int) {
@@ -110,9 +165,29 @@ class PaginatedChallengesViewController: UIViewController, UIScrollViewDelegate 
         }
     }
     
+    
+    @IBAction func photoButtonClicked(sender: SideMenuButton) {
+        if let cameraController = self.cameraController {
+            cameraController.prepareForCapture(.Photo)
+        }
+    }
+    
+    @IBAction func videoButtonClicked(sender: SideMenuButton) {
+        
+    }
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         // Load the pages that are now on screen
         loadVisiblePages()
+        
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        
+        if isAddChallengesOpen {
+            btnOpenAddView()
+        }
+        
     }
     
 }

@@ -21,6 +21,8 @@ class SideMenuButton: UIButton {
     override func awakeFromNib() {
         layer.borderWidth = 0.5
         layer.backgroundColor = UIColor.whiteColor().CGColor
+        setTitleColor(UIColor.blackColor(), forState: .Normal)
+        setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
     }
     
     override func drawRect(rect: CGRect) {
@@ -30,10 +32,15 @@ class SideMenuButton: UIButton {
     
     override var highlighted: Bool {
         didSet {
+            titleLabel!.alpha = 1.0
             if highlighted {
                 layer.borderColor = UIColor.lightGrayColor().CGColor
+                layer.backgroundColor = UIColor.blackColor().CGColor
+                //titleLabel?.textColor = UIColor.whiteColor()
             } else {
                 layer.borderColor = UIColor.blackColor().CGColor
+                layer.backgroundColor = UIColor.whiteColor().CGColor
+                //titleLabel?.textColor = UIColor.blackColor()
             }
         }
     }

@@ -28,21 +28,6 @@ class SideMenuViewController: UIViewController {
         super.didReceiveMemoryWarning()
         
     }
-    
-    
-    
-    @IBAction func challengesButtonClicked(sender: UIButton) {
-        
-        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("challengesView") as! ChallengesViewController
-        
-        let navigationController = self.mm_drawerController.centerViewController as! NavigationBarController
-        
-        navigationController.viewControllers = [viewController]
-        
-        self.mm_drawerController.centerViewController = navigationController
-        navigationController.addButton()
-        self.mm_drawerController.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
-    }
 
     @IBAction func profileButtonClicked(sender: UIButton) {
         
