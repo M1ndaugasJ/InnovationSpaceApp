@@ -24,8 +24,9 @@ class PaginatedChallengesViewController: UIViewController, UIScrollViewDelegate 
     var pageViews: [SingleChallengeViewController?] = []
     var addChallengeButtonImageView: UIImageView?
     var addChallengesBarButtonItem: UIBarButtonItem?
-    var cameraController : CameraController?
+    var cameraController: CameraController?
     var isAddChallengesOpen = false
+    var challengeCreationController: ChallengeCreationViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,16 +45,39 @@ class PaginatedChallengesViewController: UIViewController, UIScrollViewDelegate 
         button.addSubview(addChallengeButtonImageView!)
         button.addTarget(self, action: Selector("btnOpenAddView"), forControlEvents: .TouchUpInside)
         
+        let gesture = UITapGestureRecognizer(target: self, action: "dimmingViewTouched:")
+        dimmingView.addGestureRecognizer(gesture)
+        
         addChallengeButtonImageView?.center = button.center
         addChallengesBarButtonItem = UIBarButtonItem(customView: button)
         
+        let globalPoint = button.convertPoint(button.frame.origin, toView: nil)
+        print(globalPoint)
+        
         self.navigationController?.topViewController?.navigationItem.rightBarButtonItem = addChallengesBarButtonItem
         
-        self.cameraController = CameraController(dismissalHandler: {
-                self.dismissViewControllerAnimated(false, completion: nil)
+        self.cameraController = CameraController(dismissalHandler: { picker in
+                self.dismissViewControllerAnimated(false, completion: {
+                    picker.dismissViewControllerAnimated(true, completion: {})
+                })
             }, presentCameraHandler: {
-                self.presentViewController(self.cameraController!.imagePicker, animated: true, completion: {})
+                self.challengeCreationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("challengeCreationViewController") as? ChallengeCreationViewController
+                
+                self.challengeCreationController!.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+                self.presentViewController(self.challengeCreationController!, animated: false, completion: {})
+                self.challengeCreationController!.view.alpha = 0
+                
+                self.presentViewController(self.cameraController!.imagePicker, animated: true, completion: {
+                    self.challengeCreationController!.view.alpha = 1
+                })
+                
+                self.challengeCreationController!.modalPresentationStyle = UIModalPresentationStyle.FullScreen
+                
                 self.btnOpenAddView()
+            }, dismissCameraWithData: { image in
+                self.challengeCreationController?.imageView.image = image
+                
+                
         })
         
         pageImages = [Challenge(name: "skiing", photo: "photo1"), Challenge(name: "flying", photo: "photo2"), Challenge(name: "deving", photo: "photo3")]
@@ -168,12 +192,18 @@ class PaginatedChallengesViewController: UIViewController, UIScrollViewDelegate 
     
     @IBAction func photoButtonClicked(sender: SideMenuButton) {
         if let cameraController = self.cameraController {
-            cameraController.prepareForCapture(.Photo)
+            cameraController.prepareToChooseFromLibrary()
         }
     }
     
     @IBAction func videoButtonClicked(sender: SideMenuButton) {
-        
+        if let cameraController = self.cameraController {
+            cameraController.prepareForCapture()
+        }
+    }
+    
+    func dimmingViewTouched(sender:UITapGestureRecognizer){
+        btnOpenAddView()
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {

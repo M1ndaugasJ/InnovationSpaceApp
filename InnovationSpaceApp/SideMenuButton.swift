@@ -23,6 +23,7 @@ class SideMenuButton: UIButton {
         layer.backgroundColor = UIColor.whiteColor().CGColor
         setTitleColor(UIColor.blackColor(), forState: .Normal)
         setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
+        setTitleColor(UIColor.whiteColor(), forState: .Selected)
     }
     
     override func drawRect(rect: CGRect) {

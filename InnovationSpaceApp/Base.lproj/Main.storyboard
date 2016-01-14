@@ -268,6 +268,51 @@
             </objects>
             <point key="canvasLocation" x="17" y="1056"/>
         </scene>
+        <!--Challenge Creation View Controller-->
+        <scene sceneID="KqA-rK-TO0">
+            <objects>
+                <viewController storyboardIdentifier="challengeCreationViewController" id="vIv-J4-Ptd" customClass="ChallengeCreationViewController" customModule="InnovationSpaceApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yl4-JW-X5q"/>
+                        <viewControllerLayoutGuide type="bottom" id="EHq-Bb-a7a"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="so6-JP-TFS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACG-tk-1NM">
+                                <rect key="frame" x="549" y="32" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="I19-r6-eZM"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="closepropper"/>
+                                <connections>
+                                    <action selector="closeButtonTouched:" destination="vIv-J4-Ptd" eventType="touchUpInside" id="Q3A-ZF-pMf"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mTp-br-Ejb">
+                                <rect key="frame" x="29" y="77" width="542" height="276"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mTp-br-Ejb" firstAttribute="top" secondItem="ACG-tk-1NM" secondAttribute="bottom" constant="23" id="8mS-e9-rYp"/>
+                            <constraint firstItem="ACG-tk-1NM" firstAttribute="trailing" secondItem="so6-JP-TFS" secondAttribute="trailingMargin" constant="-9" id="BCp-LL-GrU"/>
+                            <constraint firstItem="mTp-br-Ejb" firstAttribute="leading" secondItem="so6-JP-TFS" secondAttribute="leading" constant="29" id="Mzn-yu-72W"/>
+                            <constraint firstAttribute="trailing" secondItem="mTp-br-Ejb" secondAttribute="trailing" constant="29" id="XVT-Ip-dQG"/>
+                            <constraint firstItem="EHq-Bb-a7a" firstAttribute="top" secondItem="mTp-br-Ejb" secondAttribute="bottom" constant="247" id="j2m-H0-9FQ"/>
+                            <constraint firstItem="ACG-tk-1NM" firstAttribute="top" secondItem="yl4-JW-X5q" secondAttribute="bottom" constant="12" id="sew-CD-Dop"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="mTp-br-Ejb" id="SEp-h3-9mz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FWt-5t-Fpe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1262" y="1098"/>
+        </scene>
         <!--Add Challenge View Controller-->
         <scene sceneID="OKM-CL-ob8">
             <objects>
@@ -408,14 +453,22 @@
                                             <constraint firstAttribute="width" constant="349" id="u0L-JL-WgP"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="23"/>
-                                        <state key="normal" title="video">
+                                        <state key="normal" title="capture">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <state key="highlighted">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="focused">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -429,7 +482,7 @@
                                             <constraint firstAttribute="width" constant="349" id="sUE-yh-6lp"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="23"/>
-                                        <state key="normal" title="photo">
+                                        <state key="normal" title="library">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -480,5 +533,6 @@
     </scenes>
     <resources>
         <image name="close_44" width="22" height="22"/>
+        <image name="closepropper" width="22" height="22"/>
     </resources>
 </document>
