@@ -12,19 +12,22 @@ import AssetsLibrary
 
 typealias DismissCamera = (imagePicker: UIImagePickerController) -> Void
 typealias PresentCamera = () -> Void
-typealias DismissCameraWithData = (image: UIImage) -> Void
+typealias DismissCameraWithPicture = (image: UIImage) -> Void
+typealias DismissCameraWithVideo = (videoURL: NSURL) -> Void
 
 class CameraController: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let imagePicker: UIImagePickerController! = UIImagePickerController()
     let dismissalHandler: DismissCamera?
     let presentCameraHandler: PresentCamera?
-    let dismissCameraWithData: DismissCameraWithData?
+    let dismissCameraWithPicture: DismissCameraWithPicture?
+    let dismissCameraWithVideo: DismissCameraWithVideo?
 
-    init(dismissalHandler: DismissCamera, presentCameraHandler: PresentCamera, dismissCameraWithData: DismissCameraWithData) {
+    init(dismissalHandler: DismissCamera, presentCameraHandler: PresentCamera, dismissCameraWithPicture: DismissCameraWithPicture, dismissCameraWithVideo: DismissCameraWithVideo) {
         self.dismissalHandler = dismissalHandler
         self.presentCameraHandler = presentCameraHandler
-        self.dismissCameraWithData = dismissCameraWithData
+        self.dismissCameraWithPicture = dismissCameraWithPicture
+        self.dismissCameraWithVideo = dismissCameraWithVideo
         super.init()
         imagePicker.delegate = self
         print("class initialized")
@@ -58,7 +61,7 @@ class CameraController: NSObject, UIImagePickerControllerDelegate, UINavigationC
         
         if let image:UIImage = (info[UIImagePickerControllerOriginalImage]) as? UIImage {
             print("Got an image")
-            self.dismissCameraWithData!(image: image)
+            self.dismissCameraWithPicture!(image: image)
 //            let selectorToCall = Selector("imageWasSavedSuccessfully:didFinishSavingWithError:context:")
 //            UIImageWriteToSavedPhotosAlbum(image, self, selectorToCall, nil)
             //dismissCameraWithData!()
@@ -69,7 +72,7 @@ class CameraController: NSObject, UIImagePickerControllerDelegate, UINavigationC
 //            let selectorToCall = Selector("videoWasSavedSuccessfully:didFinishSavingWithError:context:")
 //            UISaveVideoAtPathToSavedPhotosAlbum(videoURL.relativePath!, self, selectorToCall, nil)
             //dismissCameraWithData!()
-            
+            self.dismissCameraWithVideo!(videoURL: videoURL)
         }
         
         imagePicker.dismissViewControllerAnimated(true, completion: {

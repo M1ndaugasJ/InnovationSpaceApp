@@ -74,11 +74,11 @@ class PaginatedChallengesViewController: UIViewController, UIScrollViewDelegate 
                 self.challengeCreationController!.modalPresentationStyle = UIModalPresentationStyle.FullScreen
                 
                 self.btnOpenAddView()
-            }, dismissCameraWithData: { image in
-                self.challengeCreationController?.imageView.image = image
-                
-                
-        })
+            }, dismissCameraWithPicture: { image in
+                self.challengeCreationController?.challengeImage = image
+            }, dismissCameraWithVideo: { videoURL in
+                self.challengeCreationController?.videoURL = videoURL
+            })
         
         pageImages = [Challenge(name: "skiing", photo: "photo1"), Challenge(name: "flying", photo: "photo2"), Challenge(name: "deving", photo: "photo3")]
         let pageCount = pageImages.count
