@@ -160,7 +160,7 @@ class PaginatedChallengesViewController: UIViewController, UIScrollViewDelegate 
                     self.addChallengeButtonImageView!.image = UIImage(named: "closepropper")
                     UIView.animateWithDuration(0.1, animations: {
                         self.isAddChallengesOpen = true
-                        self.navigationController?.topViewController?.title = "Add a"
+                        self.navigationController?.topViewController?.title = "Add yours"
                         self.dimmingView.alpha = 1
                         self.addChallengeView.frame = CGRectMake(0, self.addChallengeView.frame.size.height/2, self.addChallengeView.frame.size.width, self.addChallengeView.frame.size.height)
                     })

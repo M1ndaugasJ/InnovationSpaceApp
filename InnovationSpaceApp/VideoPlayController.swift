@@ -30,9 +30,6 @@ class VideoPlayController: UIViewController {
         playerView.backgroundColor = UIColor.clearColor()
         viewForControlBackground.backgroundColor = UIColor.whiteColor()
         
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        //blurEffectView = UIVisualEffectView(effect: blurEffect)
-        
         avPlayerLayer = AVPlayerLayer(player: avPlayer)
         
         playerView.layer.insertSublayer(avPlayerLayer, atIndex: 0)
@@ -60,6 +57,7 @@ class VideoPlayController: UIViewController {
         seekSlider.continuous = true
         seekSlider.setThumbImage(emptySliderImage(), forState: .Normal)
         seekSlider.maximumTrackTintColor = UIColor.blackColor()
+        seekSlider.minimumTrackTintColor = UIColor.peterRiver()
         
         imageViewForPlaybackButton.contentMode = .Center
         imageViewForPlaybackButton.alpha = 0
@@ -81,12 +79,11 @@ class VideoPlayController: UIViewController {
         super.viewWillLayoutSubviews()
         let controlsY: CGFloat = view.bounds.size.height - controlsHeight;
         
-        avPlayerLayer.frame = view.bounds
-        //blurEffectView?.frame = view.bounds
-        avPlayerLayer.frame = CGRectMake(view.bounds.origin.x, view.bounds.origin.y, view.bounds.size.width, view.bounds.size.height-controlsHeight)
-        playerView.frame = CGRectMake(view.bounds.origin.x, view.bounds.origin.y, view.bounds.size.width, view.bounds.size.height-controlsHeight)
-        imageViewForPlaybackButton.frame = playerView.bounds
-        playbackButton.frame = view.bounds
+        playerView.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height)
+        avPlayerLayer.frame = CGRectMake(playerView.frame.origin.x, playerView.frame.origin.y - controlsHeight, playerView.frame.size.width, playerView.frame.size.height)
+        
+        imageViewForPlaybackButton.frame = avPlayerLayer.frame
+        playbackButton.frame = avPlayerLayer.bounds
         timeRemainingLabel.frame = CGRect(x: 5, y: controlsY, width: 60, height: controlsHeight)
         viewForControlBackground.frame = CGRectMake(view.bounds.origin.x, controlsY, view.bounds.size.width, controlsHeight)
         seekSlider.frame = CGRect(x: timeRemainingLabel.frame.origin.x + timeRemainingLabel.bounds.size.width,
@@ -99,6 +96,7 @@ class VideoPlayController: UIViewController {
         avPlayer.replaceCurrentItemWithPlayerItem(playerItem)
         seekSlider.maximumValue = Float(asset.duration.seconds)
         avPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
+        avPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspect
         avPlayer.play()
     }
     
@@ -172,13 +170,10 @@ class VideoPlayController: UIViewController {
     }
     
     private func animatePlayback() {
-        UIView.animateWithDuration(0.4, delay: 0, options: .CurveLinear, animations: {
-            self.imageViewForPlaybackButton.alpha = 1
-            }, completion: {
-                completed in
-                UIView.animateWithDuration(0.4, animations: {
-                    self.imageViewForPlaybackButton.alpha = 0
-                })
+        
+        self.imageViewForPlaybackButton.fadeIn(0.4, delay: 0, completion: {
+            finished in
+            self.imageViewForPlaybackButton.fadeOut(0.4, delay: 0)
         })
     }
 
