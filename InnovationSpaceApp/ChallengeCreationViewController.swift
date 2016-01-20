@@ -146,7 +146,7 @@ class ChallengeCreationViewController: UncoveredContentViewController {
         
         descriptionViewController.descriptionButtonCallback = {
             enteredText in
-            if (enteredText as String).length > 0 {
+            if (enteredText as String).characters.count > 0 {
                 self.descriptionButton.enabledButtonActionPerformedStyle()
             } else {
                 self.descriptionButton.enableButtonStyleNoBackground()
@@ -210,7 +210,7 @@ class ChallengeCreationViewController: UncoveredContentViewController {
 //    }
     
     func titleValueHasChanged(sender: UITextField) {
-        guard sender.text?.length >= 1 else {
+        guard sender.text?.characters.count >= 1 else {
             if checkCanPost {
                 postButton.disabledButtonStyle()
                 //buttonDisabled(postButton)

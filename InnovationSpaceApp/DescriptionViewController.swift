@@ -50,7 +50,7 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidChange(textView: UITextView) {
-        if textView.text?.length >= 1 {
+        if textView.text?.characters.count >= 1 {
             doneButton.enabledButtonStyle()
         } else {
             doneButton.disabledButtonStyle()
@@ -58,7 +58,7 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
         
         if placedPlaceholderText() {
             placeCursorToBeginning()
-        } else if (textView.text.length - placeholderText.length == 1) {
+        } else if (textView.text.characters.count - placeholderText.characters.count == 1) {
             textView.text = String(textView.text.characters.first!)
             textView.textColor = UIColor.blackColor()
         }

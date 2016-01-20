@@ -7,11 +7,8 @@
 //
 
 import UIKit
-import Spring
 
 class SingleChallengeViewController: UIViewController {
-    
-    @IBOutlet weak var challengeBackgroundImage: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var challengeImage: UIImageView!
     
@@ -31,14 +28,19 @@ class SingleChallengeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        challengeImage.contentMode = .ScaleAspectFit
-        self.name.text = challengeName
         self.challengeImage.image = UIImage(named: challengeImageName!)
-        let challengeLoadedImage = UIImage(named: challengeImageName!)
-        self.challengeBackgroundImage.image = challengeLoadedImage
+        challengeImage.transitionImageViewProperties()
+        print("challenge image frame at veiw controller \(challengeImage.frame)")
+        self.name.text = challengeName
+        
         
         //insertBlurView(maskView, style: UIBlurEffectStyle.Light)
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        print("single challenge view will appear")
     }
     
     override func viewDidLayoutSubviews() {

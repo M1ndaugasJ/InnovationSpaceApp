@@ -11,11 +11,12 @@ import UIKit
 class ChallengesViewCell: UITableViewCell {
 
     @IBOutlet weak var challengeName: UILabel!
-    
+    @IBOutlet weak var challengeImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .Blue
+        challengeImageView.transitionImageViewProperties()
         // Initialization code
     }
 

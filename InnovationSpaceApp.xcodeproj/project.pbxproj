@@ -11,6 +11,8 @@
 		033083691C063C280065CBFF /* NavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033083681C063C280065CBFF /* NavigationBarController.swift */; };
 		0330836B1C064FAF0065CBFF /* SideMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0330836A1C064FAF0065CBFF /* SideMenuButton.swift */; };
 		034F716E1C4D33CA00B9251B /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F716D1C4D33CA00B9251B /* UIButtonExtension.swift */; };
+		034F71701C4D4F9900B9251B /* ChallengesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F716F1C4D4F9900B9251B /* ChallengesTableViewController.swift */; };
+		034F71731C4D599900B9251B /* NavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F71721C4D599900B9251B /* NavigationDelegate.swift */; };
 		0374EFD51C2459E200455D46 /* SingleChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0374EFD41C2459E100455D46 /* SingleChallengeViewController.swift */; };
 		037518761C468A800040F5E7 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037518751C468A800040F5E7 /* CameraController.swift */; };
 		0375187D1C46E72F0040F5E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0375187C1C46E72F0040F5E7 /* Assets.xcassets */; };
@@ -22,6 +24,7 @@
 		0375188C1C4A65290040F5E7 /* UncoveredContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0375188B1C4A65280040F5E7 /* UncoveredContentViewController.swift */; };
 		037518901C4AA4190040F5E7 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0375188F1C4AA4180040F5E7 /* UIColorExtensions.swift */; };
 		037518921C4D305E0040F5E7 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037518911C4D305D0040F5E7 /* DescriptionViewController.swift */; };
+		0396BF351C4EEB5000F98706 /* PanDirectionGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396BF341C4EEB5000F98706 /* PanDirectionGestureRecognizer.swift */; };
 		0397AAA51C03777800C80128 /* MMDrawerController+Storyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0397AAA41C03777800C80128 /* MMDrawerController+Storyboard.m */; };
 		03B2EDA41C31E50400BBD4A7 /* PaginatedChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2EDA31C31E50400BBD4A7 /* PaginatedChallengesViewController.swift */; };
 		03CBC6CC1C037C5C001581E5 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CBC6C71C037C5C001581E5 /* MMDrawerBarButtonItem.m */; };
@@ -60,6 +63,8 @@
 		033083681C063C280065CBFF /* NavigationBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarController.swift; sourceTree = "<group>"; };
 		0330836A1C064FAF0065CBFF /* SideMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuButton.swift; sourceTree = "<group>"; };
 		034F716D1C4D33CA00B9251B /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		034F716F1C4D4F9900B9251B /* ChallengesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesTableViewController.swift; sourceTree = "<group>"; };
+		034F71721C4D599900B9251B /* NavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationDelegate.swift; sourceTree = "<group>"; };
 		0374EFD41C2459E100455D46 /* SingleChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleChallengeViewController.swift; sourceTree = "<group>"; };
 		037518751C468A800040F5E7 /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		0375187C1C46E72F0040F5E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +76,7 @@
 		0375188B1C4A65280040F5E7 /* UncoveredContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncoveredContentViewController.swift; sourceTree = "<group>"; };
 		0375188F1C4AA4180040F5E7 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		037518911C4D305D0040F5E7 /* DescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
+		0396BF341C4EEB5000F98706 /* PanDirectionGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanDirectionGestureRecognizer.swift; sourceTree = "<group>"; };
 		0397AAA21C03777700C80128 /* InnovationSpaceApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InnovationSpaceApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		0397AAA31C03777800C80128 /* MMDrawerController+Storyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Storyboard.h"; sourceTree = "<group>"; };
 		0397AAA41C03777800C80128 /* MMDrawerController+Storyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMDrawerController+Storyboard.m"; sourceTree = "<group>"; };
@@ -144,6 +150,14 @@
 			name = MMDrawer;
 			sourceTree = "<group>";
 		};
+		034F71711C4D594C00B9251B /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				034F71721C4D599900B9251B /* NavigationDelegate.swift */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
 		037518821C498E860040F5E7 /* UIImageColors */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +172,7 @@
 				0330836A1C064FAF0065CBFF /* SideMenuButton.swift */,
 				037518861C4A4B060040F5E7 /* TextFieldWithInset.swift */,
 				0375188B1C4A65280040F5E7 /* UncoveredContentViewController.swift */,
+				0396BF341C4EEB5000F98706 /* PanDirectionGestureRecognizer.swift */,
 			);
 			name = "Subclassed Elements";
 			sourceTree = "<group>";
@@ -197,6 +212,7 @@
 		03CC030E1C0326EC00458A05 /* InnovationSpaceApp */ = {
 			isa = PBXGroup;
 			children = (
+				034F71711C4D594C00B9251B /* Delegates */,
 				037518881C4A55860040F5E7 /* Extensions */,
 				037518851C4A4AD70040F5E7 /* Subclassed Elements */,
 				037518821C498E860040F5E7 /* UIImageColors */,
@@ -216,6 +232,7 @@
 				037518801C493F810040F5E7 /* VideoPlayController.swift */,
 				037518751C468A800040F5E7 /* CameraController.swift */,
 				037518911C4D305D0040F5E7 /* DescriptionViewController.swift */,
+				034F716F1C4D4F9900B9251B /* ChallengesTableViewController.swift */,
 				0375187C1C46E72F0040F5E7 /* Assets.xcassets */,
 			);
 			path = InnovationSpaceApp;
@@ -444,6 +461,8 @@
 				03CBC6CC1C037C5C001581E5 /* MMDrawerBarButtonItem.m in Sources */,
 				03D2D3DC1C15C82F00A65289 /* Challenge.swift in Sources */,
 				03CBC6CD1C037C5C001581E5 /* MMDrawerController.m in Sources */,
+				0396BF351C4EEB5000F98706 /* PanDirectionGestureRecognizer.swift in Sources */,
+				034F71701C4D4F9900B9251B /* ChallengesTableViewController.swift in Sources */,
 				037518871C4A4B060040F5E7 /* TextFieldWithInset.swift in Sources */,
 				0374EFD51C2459E200455D46 /* SingleChallengeViewController.swift in Sources */,
 				03CBC6CE1C037C5C001581E5 /* UIViewController+MMDrawerController.m in Sources */,
@@ -451,6 +470,7 @@
 				034F716E1C4D33CA00B9251B /* UIButtonExtension.swift in Sources */,
 				037518811C493F810040F5E7 /* VideoPlayController.swift in Sources */,
 				0375187F1C481B7B0040F5E7 /* ChallengeCreationViewController.swift in Sources */,
+				034F71731C4D599900B9251B /* NavigationDelegate.swift in Sources */,
 				033083671C061CF90065CBFF /* SideMenuViewController.swift in Sources */,
 				0375188A1C4A559F0040F5E7 /* UIViewExtensions.swift in Sources */,
 				03B2EDA41C31E50400BBD4A7 /* PaginatedChallengesViewController.swift in Sources */,

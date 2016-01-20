@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
       
         let window = application.windows.first
-        let drawer = window!.rootViewController as! MMDrawerController
-        drawer.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView
-        drawer.closeDrawerGestureModeMask = [MMCloseDrawerGestureMode.PanningCenterView, MMCloseDrawerGestureMode.TapCenterView]
+//        let drawer = window!.rootViewController as! MMDrawerController
+//        drawer.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView
+//        drawer.closeDrawerGestureModeMask = [MMCloseDrawerGestureMode.PanningCenterView, MMCloseDrawerGestureMode.TapCenterView]
         
         
         return true
