@@ -13,8 +13,8 @@ class NavigationBarController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addButton()
-        self.navigationBar.barTintColor = UIColor.whiteColor()
-        self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
+        self.navigationBar.barTintColor = UIColor.peterRiver()
+        self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         // Do any additional setup after loading the view.
     }
 

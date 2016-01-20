@@ -74,7 +74,7 @@ class ChallengeCreationViewController: UncoveredContentViewController {
     var backgroundImage: UIImage? {
         didSet {
             let imageView = UIImageView(image: backgroundImage)
-            mainImageColor = backgroundImage?.getColors().backgroundColor
+            //mainImageColor = backgroundImage?.getColors().backgroundColor
             imageView.contentMode = .ScaleToFill
             imageView.frame = colorView.bounds
             colorView.addSubview(imageView)

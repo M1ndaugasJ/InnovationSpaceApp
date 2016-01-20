@@ -18,14 +18,14 @@
 		0375187D1C46E72F0040F5E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0375187C1C46E72F0040F5E7 /* Assets.xcassets */; };
 		0375187F1C481B7B0040F5E7 /* ChallengeCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0375187E1C481B7B0040F5E7 /* ChallengeCreationViewController.swift */; };
 		037518811C493F810040F5E7 /* VideoPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037518801C493F810040F5E7 /* VideoPlayController.swift */; };
-		037518841C498EAD0040F5E7 /* UIImageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037518831C498EAD0040F5E7 /* UIImageColor.swift */; };
 		037518871C4A4B060040F5E7 /* TextFieldWithInset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037518861C4A4B060040F5E7 /* TextFieldWithInset.swift */; };
 		0375188A1C4A559F0040F5E7 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037518891C4A559F0040F5E7 /* UIViewExtensions.swift */; };
 		0375188C1C4A65290040F5E7 /* UncoveredContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0375188B1C4A65280040F5E7 /* UncoveredContentViewController.swift */; };
 		037518901C4AA4190040F5E7 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0375188F1C4AA4180040F5E7 /* UIColorExtensions.swift */; };
 		037518921C4D305E0040F5E7 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037518911C4D305D0040F5E7 /* DescriptionViewController.swift */; };
 		0397AAA51C03777800C80128 /* MMDrawerController+Storyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0397AAA41C03777800C80128 /* MMDrawerController+Storyboard.m */; };
-		03B2EDA41C31E50400BBD4A7 /* PaginatedChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2EDA31C31E50400BBD4A7 /* PaginatedChallengesViewController.swift */; };
+		03A1336C1C4FA9FB0026E438 /* AddChallengeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A1336B1C4FA9FB0026E438 /* AddChallengeView.xib */; };
+		03A1336E1C4FABEF0026E438 /* AddChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1336D1C4FABEF0026E438 /* AddChallengeView.swift */; };
 		03CBC6CC1C037C5C001581E5 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CBC6C71C037C5C001581E5 /* MMDrawerBarButtonItem.m */; };
 		03CBC6CD1C037C5C001581E5 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CBC6C81C037C5C001581E5 /* MMDrawerController.m */; };
 		03CBC6CE1C037C5C001581E5 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CBC6CB1C037C5C001581E5 /* UIViewController+MMDrawerController.m */; };
@@ -69,7 +69,6 @@
 		0375187C1C46E72F0040F5E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0375187E1C481B7B0040F5E7 /* ChallengeCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeCreationViewController.swift; sourceTree = "<group>"; };
 		037518801C493F810040F5E7 /* VideoPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayController.swift; sourceTree = "<group>"; };
-		037518831C498EAD0040F5E7 /* UIImageColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColor.swift; sourceTree = "<group>"; };
 		037518861C4A4B060040F5E7 /* TextFieldWithInset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithInset.swift; sourceTree = "<group>"; };
 		037518891C4A559F0040F5E7 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		0375188B1C4A65280040F5E7 /* UncoveredContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncoveredContentViewController.swift; sourceTree = "<group>"; };
@@ -78,7 +77,8 @@
 		0397AAA21C03777700C80128 /* InnovationSpaceApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InnovationSpaceApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		0397AAA31C03777800C80128 /* MMDrawerController+Storyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Storyboard.h"; sourceTree = "<group>"; };
 		0397AAA41C03777800C80128 /* MMDrawerController+Storyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMDrawerController+Storyboard.m"; sourceTree = "<group>"; };
-		03B2EDA31C31E50400BBD4A7 /* PaginatedChallengesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedChallengesViewController.swift; sourceTree = "<group>"; };
+		03A1336B1C4FA9FB0026E438 /* AddChallengeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddChallengeView.xib; sourceTree = "<group>"; };
+		03A1336D1C4FABEF0026E438 /* AddChallengeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddChallengeView.swift; sourceTree = "<group>"; };
 		03CBC6C51C037C5C001581E5 /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
 		03CBC6C61C037C5C001581E5 /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
 		03CBC6C71C037C5C001581E5 /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
@@ -156,14 +156,6 @@
 			name = Delegates;
 			sourceTree = "<group>";
 		};
-		037518821C498E860040F5E7 /* UIImageColors */ = {
-			isa = PBXGroup;
-			children = (
-				037518831C498EAD0040F5E7 /* UIImageColor.swift */,
-			);
-			name = UIImageColors;
-			sourceTree = "<group>";
-		};
 		037518851C4A4AD70040F5E7 /* Subclassed Elements */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,7 +204,6 @@
 				034F71711C4D594C00B9251B /* Delegates */,
 				037518881C4A55860040F5E7 /* Extensions */,
 				037518851C4A4AD70040F5E7 /* Subclassed Elements */,
-				037518821C498E860040F5E7 /* UIImageColors */,
 				033083651C03967D0065CBFF /* MMDrawer */,
 				03CC030F1C0326EC00458A05 /* AppDelegate.swift */,
 				03CC03131C0326EC00458A05 /* Main.storyboard */,
@@ -224,13 +215,14 @@
 				03CC03411C03319F00458A05 /* ProfileViewController.swift */,
 				033083661C061CF90065CBFF /* SideMenuViewController.swift */,
 				0374EFD41C2459E100455D46 /* SingleChallengeViewController.swift */,
-				03B2EDA31C31E50400BBD4A7 /* PaginatedChallengesViewController.swift */,
 				0375187E1C481B7B0040F5E7 /* ChallengeCreationViewController.swift */,
 				037518801C493F810040F5E7 /* VideoPlayController.swift */,
 				037518751C468A800040F5E7 /* CameraController.swift */,
 				037518911C4D305D0040F5E7 /* DescriptionViewController.swift */,
 				034F716F1C4D4F9900B9251B /* ChallengesTableViewController.swift */,
 				0375187C1C46E72F0040F5E7 /* Assets.xcassets */,
+				03A1336B1C4FA9FB0026E438 /* AddChallengeView.xib */,
+				03A1336D1C4FABEF0026E438 /* AddChallengeView.swift */,
 			);
 			path = InnovationSpaceApp;
 			sourceTree = "<group>";
@@ -380,6 +372,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03A1336C1C4FA9FB0026E438 /* AddChallengeView.xib in Resources */,
 				03CC031A1C0326EC00458A05 /* LaunchScreen.storyboard in Resources */,
 				0375187D1C46E72F0040F5E7 /* Assets.xcassets in Resources */,
 				03CC03151C0326EC00458A05 /* Main.storyboard in Resources */,
@@ -461,15 +454,14 @@
 				034F71701C4D4F9900B9251B /* ChallengesTableViewController.swift in Sources */,
 				037518871C4A4B060040F5E7 /* TextFieldWithInset.swift in Sources */,
 				0374EFD51C2459E200455D46 /* SingleChallengeViewController.swift in Sources */,
+				03A1336E1C4FABEF0026E438 /* AddChallengeView.swift in Sources */,
 				03CBC6CE1C037C5C001581E5 /* UIViewController+MMDrawerController.m in Sources */,
-				037518841C498EAD0040F5E7 /* UIImageColor.swift in Sources */,
 				034F716E1C4D33CA00B9251B /* UIButtonExtension.swift in Sources */,
 				037518811C493F810040F5E7 /* VideoPlayController.swift in Sources */,
 				0375187F1C481B7B0040F5E7 /* ChallengeCreationViewController.swift in Sources */,
 				034F71731C4D599900B9251B /* NavigationDelegate.swift in Sources */,
 				033083671C061CF90065CBFF /* SideMenuViewController.swift in Sources */,
 				0375188A1C4A559F0040F5E7 /* UIViewExtensions.swift in Sources */,
-				03B2EDA41C31E50400BBD4A7 /* PaginatedChallengesViewController.swift in Sources */,
 				0375188C1C4A65290040F5E7 /* UncoveredContentViewController.swift in Sources */,
 				033083691C063C280065CBFF /* NavigationBarController.swift in Sources */,
 				0397AAA51C03777800C80128 /* MMDrawerController+Storyboard.m in Sources */,

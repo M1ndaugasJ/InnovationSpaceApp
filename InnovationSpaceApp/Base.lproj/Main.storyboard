@@ -59,16 +59,6 @@
                                     <action selector="challengesTouchedUpInside:" destination="1gS-sX-d5T" eventType="touchUpInside" id="V7w-HH-JpG"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrq-o5-8dg" customClass="SideMenuButton" customModule="InnovationSpaceApp" customModuleProvider="target">
-                                <rect key="frame" x="20" y="127" width="171" height="47"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="29"/>
-                                <state key="normal" title="Paginated">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="paginatedClicked:" destination="1gS-sX-d5T" eventType="touchUpInside" id="oLo-zc-qGA"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -440,7 +430,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSE-SZ-sSz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="733" y="1056"/>
+            <point key="canvasLocation" x="725" y="1132"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PoY-zi-NgJ">
