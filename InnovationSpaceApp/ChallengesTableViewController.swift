@@ -7,18 +7,21 @@
 //
 
 import UIKit
+import CoreData
 
 class ChallengesTableViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
     let addChallengeHeight: CGFloat = 70
+    let dataController = DataController()
     var addChallengeView: AddChallengeView?
     var challenges: [Challenge] = []
     var addChallengeButtonImageView: UIImageView?
     var addChallengesBarButtonItem: UIBarButtonItem?
     var cameraController: CameraController?
     var challengeCreationController: ChallengeCreationViewController?
+    var lastChallengeId: NSManagedObjectID?
     var dimmingView: UIView? {
         didSet{
             dimmingView!.backgroundColor = UIColor(red: 200/255.0, green: 199/255.0, blue: 204/255.0, alpha: 0.5)
@@ -28,6 +31,8 @@ class ChallengesTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("challenges did load")
+        challenges = fetchSavedChallenges()
         self.navigationController?.topViewController?.title = "Challenges"
         self.tableView.separatorStyle = .None
         
@@ -77,10 +82,17 @@ class ChallengesTableViewController: UIViewController {
                     self.challengeCreationController!.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
                     self.presentViewController(self.challengeCreationController!, animated: false, completion: {})
                     self.challengeCreationController!.view.alpha = 0
-                    
+                
+                    self.cameraController?.lastChallengeID = self.lastChallengeId
+                
                     self.presentViewController(self.cameraController!.imagePicker, animated: true, completion: {
                         self.challengeCreationController!.view.alpha = 1
                     })
+                
+                    self.challengeCreationController?.savedChallengeCallback = {
+                        self.challenges = self.fetchSavedChallenges()
+                        self.tableView.reloadData()
+                    }
                     
                     self.challengeCreationController!.modalPresentationStyle = UIModalPresentationStyle.FullScreen
                     
@@ -91,12 +103,8 @@ class ChallengesTableViewController: UIViewController {
                     self.challengeCreationController?.videoURL = videoURL
         })
 
-        self.tableView.contentInset = UIEdgeInsetsMake(0,0,0,0);
+        self.tableView.contentInset = UIEdgeInsetsMake(0,0,0,0)
         
-        challenges.append(Challenge(name: "skiing", photo: "photo1"))
-        challenges.append(Challenge(name: "diving", photo: "photo2"))
-        challenges.append(Challenge(name: "jumping", photo: "photo1"))
-        challenges.append(Challenge(name: "sliding", photo: "photo2"))
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -111,10 +119,23 @@ class ChallengesTableViewController: UIViewController {
         return challenges.count
     }
     
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("challenge", forIndexPath: indexPath) as! ChallengesViewCell
-        cell.challengeImageView.image = UIImage(named: challenges[indexPath.row].photoName!)
-        cell.challengeName.text = challenges[indexPath.row].name
+        //print(indexPath.row)
+        //print(challenges[indexPath.row])
+        //print("loading image from \(fileInDocumentsDirectory(challenges[indexPath.row].imageLocation!))")
+        
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            let image = UIImage(contentsOfFile: ChallengeDataManipulationHelper.fileInDocumentsDirectory(self.challenges[indexPath.row].imageLocation!))
+            
+            print("cell imageView \(cell.challengeImageView.frame)")
+            cell.challengeImageView.image = image
+            cell.challengeBackgroundView.image = image
+            cell.challengeName.text = self.challenges[indexPath.row].challengeTitle
+        })
         return cell
     }
     
@@ -153,11 +174,25 @@ class ChallengesTableViewController: UIViewController {
                         print("close button pressed")
                         self.addChallengeView!.alpha = 0
                         self.addChallengeView!.frame.origin.y -= self.tableView.contentInset.top
-                        //self.addChallengeView!.frame = CGRectMake(0, -self.addChallengeHeight, self.view.frame.width, self.addChallengeHeight)
 
                     })
                 }
         })
+    }
+    
+    func fetchSavedChallenges() -> [Challenge] {
+        let moc = dataController.managedObjectContext
+        let personFetch = NSFetchRequest(entityName: "Challenge")
+        
+        do {
+            let fetchedChallenges = try moc.executeFetchRequest(personFetch) as! [Challenge]
+
+
+            
+            return fetchedChallenges
+        } catch {
+            fatalError("Failed to fetch person: \(error)")
+        }
     }
     
     func libraryButtonClicked() {
@@ -176,7 +211,7 @@ class ChallengesTableViewController: UIViewController {
         if segue.identifier == "challengeSegue" {
             let challenge = segue.destinationViewController as! SingleChallengeViewController
             if let challengeCell = sender as? ChallengesViewCell {
-                challenge.challengeImageName = challenges[(tableView.indexPathForSelectedRow?.row)!].photoName!
+                challenge.challengeImageName = challenges[(tableView.indexPathForSelectedRow?.row)!].imageLocation!
                 challenge.challengeName = challengeCell.challengeName.text
             }
         }

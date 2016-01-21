@@ -9,11 +9,13 @@
 import UIKit
 import MobileCoreServices
 import AssetsLibrary
+import CoreData
+import Photos
 
 typealias DismissCamera = (imagePicker: UIImagePickerController) -> Void
 typealias PresentCamera = () -> Void
 typealias DismissCameraWithPicture = (image: UIImage) -> Void
-typealias DismissCameraWithVideo = (videoURL: NSURL) -> Void
+typealias DismissCameraWithVideo = (videoURL: String) -> Void
 
 class CameraController: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -22,6 +24,8 @@ class CameraController: NSObject, UIImagePickerControllerDelegate, UINavigationC
     let presentCameraHandler: PresentCamera?
     let dismissCameraWithPicture: DismissCameraWithPicture?
     let dismissCameraWithVideo: DismissCameraWithVideo?
+    
+    var lastChallengeID: NSManagedObjectID?
 
     init(dismissalHandler: DismissCamera, presentCameraHandler: PresentCamera, dismissCameraWithPicture: DismissCameraWithPicture, dismissCameraWithVideo: DismissCameraWithVideo) {
         self.dismissalHandler = dismissalHandler
@@ -49,7 +53,7 @@ class CameraController: NSObject, UIImagePickerControllerDelegate, UINavigationC
     }
     
     func prepareToChooseFromLibrary(){
-        if (UIImagePickerController.isSourceTypeAvailable(.SavedPhotosAlbum)) {
+        if (UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary)) {
             imagePicker.allowsEditing = false //2
             imagePicker.sourceType = .SavedPhotosAlbum //3
             imagePicker.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
@@ -57,61 +61,49 @@ class CameraController: NSObject, UIImagePickerControllerDelegate, UINavigationC
         }
     }
     
+//    func getDocumentsURL() -> NSURL {
+//        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+//        return documentsURL
+//    }
+//
+//    func fileInDocumentsDirectory(filename: String) -> String {
+//        
+//        let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
+//        return fileURL.path!
+//        
+//    }
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
+//        let date = NSDate()
+//        let formatter = NSDateFormatter()
+//        formatter.dateFormat = dateFormat
+        
         if let image:UIImage = (info[UIImagePickerControllerOriginalImage]) as? UIImage {
-            print("Got an image")
+//            let fileName = "\(formatter.stringFromDate(date)).PNG"
+//            let imagePath = ChallengeDataManipulationHelper.fileInDocumentsDirectory(fileName)
+//            let data = UIImagePNGRepresentation(image)
+//            data?.writeToFile(imagePath, atomically: true)
             self.dismissCameraWithPicture!(image: image)
-//            let selectorToCall = Selector("imageWasSavedSuccessfully:didFinishSavingWithError:context:")
-//            UIImageWriteToSavedPhotosAlbum(image, self, selectorToCall, nil)
-            //dismissCameraWithData!()
         }
         
         if let videoURL:NSURL = (info[UIImagePickerControllerMediaURL]) as? NSURL {
-            print("Got a video")
-//            let selectorToCall = Selector("videoWasSavedSuccessfully:didFinishSavingWithError:context:")
-//            UISaveVideoAtPathToSavedPhotosAlbum(videoURL.relativePath!, self, selectorToCall, nil)
-            //dismissCameraWithData!()
-            self.dismissCameraWithVideo!(videoURL: videoURL)
+//            let videoData = NSData(contentsOfURL: videoURL)
+//            let fileName = "\(formatter.stringFromDate(date)).mov"
+//            let videoPath = ChallengeDataManipulationHelper.fileInDocumentsDirectory(fileName)
+//            videoData?.writeToFile(videoPath, atomically: true)
+//            self.dismissCameraWithVideo!(videoURL: fileName)
         }
         
         imagePicker.dismissViewControllerAnimated(true, completion: {
             
-            // Anything you want to happen when the user saves an image
+            // Smh
         })
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         print("User cancelled image picker")
         dismissalHandler!(imagePicker: imagePicker)
-//        dismissViewControllerAnimated(true, completion: {
-//            // Anything you want to happen when the user selects cancel
-//        })
     }
-    
-    func imageWasSavedSuccessfully(image: UIImage, didFinishSavingWithError error: NSError!, context: UnsafeMutablePointer<()>){
-        print("Image saved")
-        if let theError = error {
-            print("An error happened while saving the image = \(theError)")
-        } else {
-            print("Displaying")
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                //self.currentImage.image = image
-            })
-        }
-    }
-    
-    func videoWasSavedSuccessfully(videoPath: String, didFinishSavingWithError error: NSError!, context: UnsafeMutablePointer<()>){
-        print("Video saved")
-        if let theError = error {
-            print("An error happened while saving the video = \(theError)")
-        } else {
-            print("Displaying")
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                //self.currentImage.image = image
-            })
-        }
-    }
-
     
 }

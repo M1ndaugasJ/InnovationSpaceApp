@@ -91,7 +91,7 @@ class VideoPlayController: UIViewController {
         
     }
     
-    func prepareforVideo(asset: AVURLAsset){
+    func prepareforVideo(asset: AVAsset){
         let playerItem = AVPlayerItem(asset: asset)
         avPlayer.replaceCurrentItemWithPlayerItem(playerItem)
         seekSlider.maximumValue = Float(asset.duration.seconds)

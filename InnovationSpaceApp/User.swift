@@ -1,5 +1,5 @@
 //
-//  Challenge.swift
+//  User.swift
 //  InnovationSpaceApp
 //
 //  Created by Mindaugas on 1/20/16.
@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-class Challenge: NSManagedObject {
+class User: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 

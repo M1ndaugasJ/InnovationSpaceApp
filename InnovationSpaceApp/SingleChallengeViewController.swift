@@ -9,8 +9,11 @@
 import UIKit
 
 class SingleChallengeViewController: UIViewController {
+    
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var visualEffectViewBackground: UIVisualEffectView!
     @IBOutlet weak var challengeImage: UIImageView!
+    @IBOutlet weak var imageViewForBackground: UIImageView!
     
     var challengeName: String?
     
@@ -28,7 +31,8 @@ class SingleChallengeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.challengeImage.image = UIImage(named: challengeImageName!)
+        self.challengeImage.image = UIImage(contentsOfFile: ChallengeDataManipulationHelper.fileInDocumentsDirectory(challengeImageName!))
+        self.imageViewForBackground.image = self.challengeImage.image
         challengeImage.transitionImageViewProperties()
         print("challenge image frame at veiw controller \(challengeImage.frame)")
         self.name.text = challengeName
