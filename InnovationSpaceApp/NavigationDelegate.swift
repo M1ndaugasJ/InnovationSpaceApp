@@ -28,7 +28,7 @@ class NavigationDelegate: UIPercentDrivenInteractiveTransition, UINavigationCont
     func panned(gestureRecognizer: UIScreenEdgePanGestureRecognizer) {
         let point = gestureRecognizer.locationInView(self.navigationController!.view)
         let percent = fmaxf(fminf(Float(point.x / (UIScreen.mainScreen().bounds.width)), 1.0), 0.0)
-        print(percent)
+        //print(percent)
         self.navigationController?.view.layer.speed = 1.0
         switch (gestureRecognizer.state){
         case .Began:
@@ -111,24 +111,6 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         
         let view = viewForTransition(singleChallengeViewController.challengeImage.image!, frame: singleChallengeViewController.challengeImage.frame)
 
-        //        let imageView = UIImageView(frame: view.bounds)
-//        imageView.image = selectedCell.challengeImageView.image
-//        imageView.transitionImageViewProperties()
-        
-//        let imageView = UIImageView(frame: view.bounds)
-//        imageView.image = singleChallengeViewController.challengeImage.image
-//        imageView.transitionImageViewProperties()
-//        
-//        let imageViewForBackground = UIImageView(frame: view.bounds)
-//        imageViewForBackground.image = singleChallengeViewController.challengeImage.image
-//        
-//        let visualEffectView = UIVisualEffectView(frame: view.bounds)
-//        let blur = UIBlurEffect(style: .Light)
-//        visualEffectView.effect = blur
-//        
-//        view.addSubview(imageViewForBackground)
-//        view.addSubview(visualEffectView)
-//        view.addSubview(imageView)
         
         placeholderViewForCellImage.backgroundColor = UIColor.whiteColor()
         challengesTableViewController.view.addSubview(placeholderViewForCellImage)
@@ -168,14 +150,13 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
                 
                 singleChallengeViewController.challengeImage.alpha = 0.0
                 singleChallengeViewController.imageViewForBackground.alpha = 0.0
-                //singleChallengeViewController.visualEffectViewBackground.alpha = 0.0
+                singleChallengeViewController.videoPlayerView.alpha = 0.0
                 singleChallengeViewController.view.alpha = 0.0
                 singleChallengeViewController.view.addSubview(view)
                 
                 selectedCellFrame = challengesTableViewController.tableView.convertRect(challengesTableViewController.tableView.rectForRowAtIndexPath(indexPath), toView: challengesTableViewController.tableView.superview)
                 
                 UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0.1, options: .CurveEaseInOut, animations: {
-                    //print("nav bar height \(singleChallengeViewController.navigationController?.navigationBar.frame.height)")
                     
                     view.frame = CGRect(x: 0.0, y: Double(singleChallengeViewController.challengeImage.frame.origin.y), width: Double(singleChallengeViewController.challengeImage.frame.width), height: Double(singleChallengeViewController.challengeImage.frame.height))
                     view.alpha = 1.0
@@ -184,11 +165,9 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
                     
                     }) { finished in
                         singleChallengeViewController.view.sendSubviewToBack(view)
-                        let autoLayoutViews = [view]
-                        for view in autoLayoutViews { view.setNeedsUpdateConstraints() }
                         singleChallengeViewController.challengeImage.alpha = 1.0
                         singleChallengeViewController.imageViewForBackground.alpha = 1.0
-                        //singleChallengeViewController.visualEffectViewBackground.alpha = 1.0
+                        singleChallengeViewController.videoPlayerView.alpha = 1.0
                         challengesTableViewController.tableView.deselectRowAtIndexPath(indexPath, animated: false)
                         view.removeFromSuperview()
                         context.completeTransition(!context.transitionWasCancelled())

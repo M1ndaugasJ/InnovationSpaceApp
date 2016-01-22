@@ -59,10 +59,10 @@ class ChallengeCreationViewController: UncoveredContentViewController {
         case InvalidResource(String)
     }
     
-    var videoURL: String? {
+    var videoURL: NSURL? {
         didSet{
             do {
-                try prepareVideoAsset()
+                try prepareVideoAsset(videoURL!)
                 imageView.hidden = true
             } catch AppError.InvalidResource(let name) {
                 debugPrint("Could not find resource \(name).")
@@ -176,9 +176,9 @@ class ChallengeCreationViewController: UncoveredContentViewController {
     }
     
     
-    private func prepareVideoAsset() throws {
-        
-        guard NSFileManager.defaultManager().fileExistsAtPath((ChallengeDataManipulationHelper.fileInDocumentsDirectory(videoURL!))) else {
+    private func prepareVideoAsset(videoURL: NSURL) throws {
+
+        guard NSFileManager.defaultManager().fileExistsAtPath(videoURL.path!) else {
             throw AppError.InvalidResource("shit")
         }
         
@@ -187,11 +187,9 @@ class ChallengeCreationViewController: UncoveredContentViewController {
         self.addChildViewController(videoPlayer)
         videoPlayerView.addSubview(videoPlayer.view)
         videoPlayer.didMoveToParentViewController(self)
-        
-        let asset = AVAsset(URL: NSURL(fileURLWithPath: ChallengeDataManipulationHelper.fileInDocumentsDirectory(videoURL!)))
-        backgroundImage = ChallengeDataManipulationHelper.backgroundImageFromVideo(asset)
-        videoPlayer.prepareforVideo(asset)
-        
+        backgroundImage = ChallengeDataManipulationHelper.backgroundImageFromVideo(videoURL)
+        videoPlayer.prepareforVideo(AVAsset(URL: videoURL))
+        videoPlayer.playVideo()
     }
     
     @IBAction func closeButtonTouchDown(sender: UIButton) {
@@ -240,7 +238,6 @@ class ChallengeCreationViewController: UncoveredContentViewController {
     
     @IBAction func postButtonTouchedInside(sender: UIButton) {
         
-        //progressBarDisplayer("Saving Your Challenge", true)
         activityIndicator.hidden = false
         dimmingView?.hidden = false
         activityIndicator.startAnimating()
@@ -250,7 +247,6 @@ class ChallengeCreationViewController: UncoveredContentViewController {
             dispatch_async(dispatch_get_main_queue(), {
                 self.activityIndicator.hidden = true
                 self.dimmingView?.hidden = true
-                //self.messageFrame.removeFromSuperview()
                 self.savedChallengeCallback!()
                 self.dismissViewControllerAnimated(true, completion: {})
             })
@@ -260,26 +256,44 @@ class ChallengeCreationViewController: UncoveredContentViewController {
     }
     
     private func saveData(){
+        
         let date = NSDate()
         let formatter = NSDateFormatter()
-        formatter.dateFormat = dateFormat
-        let fileName = "\(formatter.stringFromDate(date)).PNG"
-        let imagePath = ChallengeDataManipulationHelper.fileInDocumentsDirectory(fileName)
-        let data = UIImageJPEGRepresentation(challengeImage!, 0.75)
-        
-        data?.writeToFile(imagePath, atomically: true)
-        
-        print(titleTextField.text)
-        print(descriptionText)
-        print(videoURL)
-        print(imagePath)
         let dataController = DataController()
         let moc = dataController.managedObjectContext
         let entity = NSEntityDescription.insertNewObjectForEntityForName("Challenge", inManagedObjectContext: moc) as! Challenge
         
+        formatter.dateFormat = dateFormat
         entity.setValue(titleTextField.text, forKey: "challengeTitle")
         entity.setValue(descriptionText, forKey: "challengeDescription")
-        entity.setValue(fileName, forKey: "imageLocation")
+        
+        if let videoURL = self.videoURL {
+            let videoData = NSData(contentsOfURL: videoURL)
+            let fileName = "\(formatter.stringFromDate(date)).mov"
+            let videoPath = ChallengeDataManipulationHelper.fileInDocumentsDirectory(fileName)
+            videoData?.writeToFile(videoPath, atomically: true)
+            
+            let image = ChallengeDataManipulationHelper.backgroundImageFromVideo(videoURL)
+            let imageName = "\(formatter.stringFromDate(date)).PNG"
+            let imagePath = ChallengeDataManipulationHelper.fileInDocumentsDirectory(imageName)
+            let data = UIImageJPEGRepresentation(image!, 0.75)
+            data?.writeToFile(imagePath, atomically: false)
+            
+            print(NSFileManager.defaultManager().fileExistsAtPath(imagePath))
+            
+            entity.setValue(imageName, forKey: "imageLocation")
+            entity.setValue(fileName, forKey: "videoLocation")
+
+        }
+        if let challengeImage = self.challengeImage {
+            let fileName = "\(formatter.stringFromDate(date)).PNG"
+            let imagePath = ChallengeDataManipulationHelper.fileInDocumentsDirectory(fileName)
+            let data = UIImageJPEGRepresentation(challengeImage, 0.75)
+            
+            data?.writeToFile(imagePath, atomically: true)
+            
+            entity.setValue(fileName, forKey: "imageLocation")
+        }
         
         do {
             try moc.save()

@@ -129,6 +129,9 @@
                                                         <constraint firstItem="CJV-2H-R9G" firstAttribute="top" secondItem="r6i-wA-0YZ" secondAttribute="top" id="yRA-EQ-tcw"/>
                                                     </constraints>
                                                 </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i8O-7P-xJs">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4E-ER-Edu">
                                                     <rect key="frame" x="8" y="8" width="82" height="48"/>
                                                     <constraints>
@@ -147,7 +150,11 @@
                                                 <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="O4E-ER-Edu" secondAttribute="trailing" constant="502" id="Ear-lF-22K"/>
                                                 <constraint firstItem="r6i-wA-0YZ" firstAttribute="top" secondItem="HA3-Du-46F" secondAttribute="top" id="RPI-Kj-aUc"/>
                                                 <constraint firstAttribute="trailing" secondItem="r6i-wA-0YZ" secondAttribute="trailing" id="VQR-EE-ZgD"/>
+                                                <constraint firstAttribute="trailing" secondItem="i8O-7P-xJs" secondAttribute="trailing" id="c8W-Cz-JWt"/>
                                                 <constraint firstItem="r6i-wA-0YZ" firstAttribute="leading" secondItem="HA3-Du-46F" secondAttribute="leading" id="nsF-su-qgE"/>
+                                                <constraint firstItem="i8O-7P-xJs" firstAttribute="top" secondItem="HA3-Du-46F" secondAttribute="top" id="sAa-DU-GgH"/>
+                                                <constraint firstItem="i8O-7P-xJs" firstAttribute="leading" secondItem="HA3-Du-46F" secondAttribute="leading" id="srF-SH-cqv"/>
+                                                <constraint firstAttribute="bottom" secondItem="i8O-7P-xJs" secondAttribute="bottom" id="uPA-Ec-fnp"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -160,6 +167,7 @@
                                             <outlet property="challengeBackgroundVisualEffectView" destination="Pja-K2-ibT" id="m26-fz-JQ7"/>
                                             <outlet property="challengeImageView" destination="fEs-h7-Gse" id="Dq2-mp-hrf"/>
                                             <outlet property="challengeName" destination="O4E-ER-Edu" id="Q9P-oR-VoG"/>
+                                            <outlet property="playbackButtonImageView" destination="i8O-7P-xJs" id="0As-n5-iLu"/>
                                             <outlet property="wholeContentView" destination="r6i-wA-0YZ" id="XZ4-mb-hfZ"/>
                                             <segue destination="xyb-xV-hD0" kind="show" identifier="challengeSegue" id="8wD-eo-ahw"/>
                                         </connections>
@@ -238,6 +246,13 @@
                                     <constraint firstAttribute="height" constant="300" id="r8Q-5U-nxU"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIJ-Kk-bki">
+                                <rect key="frame" x="0.0" y="64" width="600" height="330"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="330" id="6Fn-By-0y6"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -245,9 +260,12 @@
                             <constraint firstItem="eP0-5S-9J1" firstAttribute="leading" secondItem="4jf-Ji-6u5" secondAttribute="leading" id="EU0-Jl-1q7"/>
                             <constraint firstAttribute="trailing" secondItem="IJq-Ib-Ocu" secondAttribute="trailing" id="Hle-kD-RJ2"/>
                             <constraint firstItem="4Ak-k9-ITJ" firstAttribute="top" secondItem="hh3-N1-Cqb" secondAttribute="bottom" id="Hys-Ql-18X"/>
+                            <constraint firstAttribute="trailing" secondItem="vIJ-Kk-bki" secondAttribute="trailing" id="LEr-Q4-J3A"/>
+                            <constraint firstItem="vIJ-Kk-bki" firstAttribute="top" secondItem="hh3-N1-Cqb" secondAttribute="bottom" id="YCP-ku-1VH"/>
                             <constraint firstAttribute="trailing" secondItem="eP0-5S-9J1" secondAttribute="trailing" id="ao2-aa-ZFc"/>
                             <constraint firstItem="4Ak-k9-ITJ" firstAttribute="leading" secondItem="4jf-Ji-6u5" secondAttribute="leading" id="fll-MH-hdd"/>
                             <constraint firstAttribute="trailing" secondItem="4Ak-k9-ITJ" secondAttribute="trailing" id="uhp-qk-hnS"/>
+                            <constraint firstItem="vIJ-Kk-bki" firstAttribute="leading" secondItem="4jf-Ji-6u5" secondAttribute="leading" id="vnx-l1-LR2"/>
                             <constraint firstItem="IJq-Ib-Ocu" firstAttribute="leading" secondItem="4jf-Ji-6u5" secondAttribute="leading" id="xSH-Pu-08T"/>
                             <constraint firstItem="eP0-5S-9J1" firstAttribute="top" secondItem="hh3-N1-Cqb" secondAttribute="bottom" id="xmP-OQ-XDE"/>
                         </constraints>
@@ -256,6 +274,7 @@
                         <outlet property="challengeImage" destination="eP0-5S-9J1" id="zsY-YV-iHb"/>
                         <outlet property="imageViewForBackground" destination="4Ak-k9-ITJ" id="Swp-6j-22L"/>
                         <outlet property="name" destination="bqM-x1-kwE" id="lXm-0Q-MPK"/>
+                        <outlet property="videoPlayerView" destination="vIJ-Kk-bki" id="1vG-dB-2UT"/>
                         <outlet property="visualEffectViewBackground" destination="IJq-Ib-Ocu" id="ctC-IG-h1Y"/>
                     </connections>
                 </viewController>

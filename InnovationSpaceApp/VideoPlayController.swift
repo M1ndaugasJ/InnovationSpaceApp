@@ -78,9 +78,10 @@ class VideoPlayController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         let controlsY: CGFloat = view.bounds.size.height - controlsHeight;
-        
-        playerView.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height)
-        avPlayerLayer.frame = CGRectMake(playerView.frame.origin.x, playerView.frame.origin.y - controlsHeight, playerView.frame.size.width, playerView.frame.size.height)
+        print("whole view \(view)")
+        print("playerView frame ")
+        playerView.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height - controlsHeight)
+        avPlayerLayer.frame = playerView.bounds
         
         imageViewForPlaybackButton.frame = avPlayerLayer.frame
         playbackButton.frame = avPlayerLayer.bounds
@@ -91,12 +92,20 @@ class VideoPlayController: UIViewController {
         
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        avPlayer.pause()
+    }
+    
     func prepareforVideo(asset: AVAsset){
         let playerItem = AVPlayerItem(asset: asset)
         avPlayer.replaceCurrentItemWithPlayerItem(playerItem)
         seekSlider.maximumValue = Float(asset.duration.seconds)
         avPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
         avPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspect
+    }
+    
+    func playVideo(){
         avPlayer.play()
     }
     
@@ -178,6 +187,7 @@ class VideoPlayController: UIViewController {
     }
 
     deinit {
+        print("video player deinit")
         NSNotificationCenter.defaultCenter().removeObserver(self)
         avPlayer.removeTimeObserver(timeObserver)
     }

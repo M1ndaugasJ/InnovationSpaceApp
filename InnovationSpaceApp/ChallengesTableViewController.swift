@@ -22,6 +22,7 @@ class ChallengesTableViewController: UIViewController {
     var cameraController: CameraController?
     var challengeCreationController: ChallengeCreationViewController?
     var lastChallengeId: NSManagedObjectID?
+    var addChallengesViewOpen: Bool = false
     var dimmingView: UIView? {
         didSet{
             dimmingView!.backgroundColor = UIColor(red: 200/255.0, green: 199/255.0, blue: 204/255.0, alpha: 0.5)
@@ -39,12 +40,11 @@ class ChallengesTableViewController: UIViewController {
         addChallengeButtonImageView = UIImageView(image: UIImage(named: "addpng"))
         addChallengeButtonImageView?.autoresizingMask = .None
         addChallengeButtonImageView?.contentMode = .Center
-        addChallengeButtonImageView?.backgroundColor = UIColor.blackColor()
         let button = UIButton(type: .Custom)
         button.frame = CGRectMake(0, 0, 40, 40)
-        button.backgroundColor = UIColor.brownColor()
+        
         button.addSubview(addChallengeButtonImageView!)
-        button.addTarget(self, action: Selector("btnOpenAddView"), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: Selector("openAddChallengeView"), forControlEvents: .TouchUpInside)
         
         dimmingView = UIView(frame: self.view.frame)
         
@@ -84,9 +84,10 @@ class ChallengesTableViewController: UIViewController {
                     self.challengeCreationController!.view.alpha = 0
                 
                     self.cameraController?.lastChallengeID = self.lastChallengeId
-                
+                    //self.cameraController!.imagePicker.viewWillAppear(true)
                     self.presentViewController(self.cameraController!.imagePicker, animated: true, completion: {
                         self.challengeCreationController!.view.alpha = 1
+                        //self.cameraController!.imagePicker.viewDidAppear(true)
                     })
                 
                     self.challengeCreationController?.savedChallengeCallback = {
@@ -96,11 +97,11 @@ class ChallengesTableViewController: UIViewController {
                     
                     self.challengeCreationController!.modalPresentationStyle = UIModalPresentationStyle.FullScreen
                     
-                    self.btnOpenAddView()
+                    self.openAddChallengeView()
             }, dismissCameraWithPicture: { image in
                     self.challengeCreationController?.challengeImage = image
             }, dismissCameraWithVideo: { videoURL in
-                    self.challengeCreationController?.videoURL = videoURL
+                    (self.challengeCreationController?.videoURL = videoURL)!
         })
 
         self.tableView.contentInset = UIEdgeInsetsMake(0,0,0,0)
@@ -123,19 +124,19 @@ class ChallengesTableViewController: UIViewController {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("challenge", forIndexPath: indexPath) as! ChallengesViewCell
-        //print(indexPath.row)
-        //print(challenges[indexPath.row])
-        //print("loading image from \(fileInDocumentsDirectory(challenges[indexPath.row].imageLocation!))")
+        let challenge = self.challenges[indexPath.row]
+        let image = UIImage(contentsOfFile: ChallengeDataManipulationHelper.fileInDocumentsDirectory(challenge.imageLocation!))
         
+        if let videoLocation = challenge.videoLocation {
+            print("this is a video challenge \(challenge.videoLocation)")
+            cell.playbackButtonImageView.alpha = 1.0
+        } else {
+            cell.playbackButtonImageView.alpha = 0.0
+        }
         
-        dispatch_async(dispatch_get_main_queue(), {
-            let image = UIImage(contentsOfFile: ChallengeDataManipulationHelper.fileInDocumentsDirectory(self.challenges[indexPath.row].imageLocation!))
-            
-            print("cell imageView \(cell.challengeImageView.frame)")
-            cell.challengeImageView.image = image
-            cell.challengeBackgroundView.image = image
-            cell.challengeName.text = self.challenges[indexPath.row].challengeTitle
-        })
+        cell.challengeImageView.image = image
+        cell.challengeBackgroundView.image = image
+        cell.challengeName.text = challenge.challengeTitle
         return cell
     }
     
@@ -145,38 +146,35 @@ class ChallengesTableViewController: UIViewController {
     
     func dimmingViewTouched(sender:UITapGestureRecognizer){
         print("touched the dimming view")
-        btnOpenAddView()
+        openAddChallengeView()
     }
     
-    func btnOpenAddView(){
-        UIView.animateWithDuration(0.1, animations: {
+    func openAddChallengeView(){
+        UIView.animateWithDuration(0.3, delay: 0, options: .LayoutSubviews, animations: {
             self.addChallengeButtonImageView!.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_4))
-            
-            }, completion: {
-                completed in
-                self.addChallengeButtonImageView!.transform = CGAffineTransformMakeRotation(CGFloat(0))
-                if self.addChallengeButtonImageView!.image == UIImage(named: "addpng") {
+            self.addChallengesViewOpen = !self.addChallengesViewOpen
+            if self.addChallengesViewOpen {
+                self.addChallengeView!.alpha = 1
+                self.dimmingView!.alpha = 1
+                self.addChallengeView!.frame.origin.y += self.tableView.contentInset.top
+            } else {
+                self.addChallengeView!.alpha = 0
+                self.dimmingView!.alpha = 0
+                self.addChallengeView!.frame.origin.y -= self.tableView.contentInset.top
+                
+            }
+            }, completion: { finished in
+                print("challenges open \(self.addChallengesViewOpen)")
+                if self.addChallengesViewOpen {
                     self.addChallengeButtonImageView!.image = UIImage(named: "closepropper")
-                    UIView.animateWithDuration(0.1, animations: {
-                        //self.isAddChallengesOpen = true
-                        self.navigationController?.topViewController?.title = "Add yours"
-                        self.addChallengeView!.alpha = 1
-                        self.dimmingView!.alpha = 1
-                        //self.addChallengeView!.frame = CGRectMake(0, self.addChallengeHeight, self.view.frame.width, self.addChallengeHeight)
-                        print("add button pressed")
-                        self.addChallengeView!.frame.origin.y += self.tableView.contentInset.top
-                    })
+                    self.navigationController?.topViewController?.title = "Add yours"
                 } else {
                     self.addChallengeButtonImageView!.image = UIImage(named: "addpng")
-                    UIView.animateWithDuration(0.3, animations: {
-                        self.navigationController?.topViewController?.title = "Challenges"
-                        self.dimmingView!.alpha = 0
-                        print("close button pressed")
-                        self.addChallengeView!.alpha = 0
-                        self.addChallengeView!.frame.origin.y -= self.tableView.contentInset.top
-
-                    })
+                    self.navigationController?.topViewController?.title = "Challenges"
+                    
                 }
+                self.addChallengeButtonImageView!.transform = CGAffineTransformIdentity
+                
         })
     }
     
@@ -186,9 +184,7 @@ class ChallengesTableViewController: UIViewController {
         
         do {
             let fetchedChallenges = try moc.executeFetchRequest(personFetch) as! [Challenge]
-
-
-            
+            //print(fetchedChallenges)
             return fetchedChallenges
         } catch {
             fatalError("Failed to fetch person: \(error)")
@@ -209,10 +205,14 @@ class ChallengesTableViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "challengeSegue" {
-            let challenge = segue.destinationViewController as! SingleChallengeViewController
+            let challengeViewController = segue.destinationViewController as! SingleChallengeViewController
             if let challengeCell = sender as? ChallengesViewCell {
-                challenge.challengeImageName = challenges[(tableView.indexPathForSelectedRow?.row)!].imageLocation!
-                challenge.challengeName = challengeCell.challengeName.text
+                let challenge = challenges[(tableView.indexPathForSelectedRow?.row)!]
+                if let videoLocation = challenge.videoLocation {
+                    challengeViewController.videoName = videoLocation
+                }
+                challengeViewController.challengeImageName = challenge.imageLocation!
+                challengeViewController.challengeName = challengeCell.challengeName.text
             }
         }
     }

@@ -15,7 +15,7 @@ import Photos
 typealias DismissCamera = (imagePicker: UIImagePickerController) -> Void
 typealias PresentCamera = () -> Void
 typealias DismissCameraWithPicture = (image: UIImage) -> Void
-typealias DismissCameraWithVideo = (videoURL: String) -> Void
+typealias DismissCameraWithVideo = (videoURL: NSURL) -> Void
 
 class CameraController: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -88,11 +88,8 @@ class CameraController: NSObject, UIImagePickerControllerDelegate, UINavigationC
         }
         
         if let videoURL:NSURL = (info[UIImagePickerControllerMediaURL]) as? NSURL {
-//            let videoData = NSData(contentsOfURL: videoURL)
-//            let fileName = "\(formatter.stringFromDate(date)).mov"
-//            let videoPath = ChallengeDataManipulationHelper.fileInDocumentsDirectory(fileName)
-//            videoData?.writeToFile(videoPath, atomically: true)
-//            self.dismissCameraWithVideo!(videoURL: fileName)
+
+            self.dismissCameraWithVideo!(videoURL: videoURL)
         }
         
         imagePicker.dismissViewControllerAnimated(true, completion: {

@@ -24,7 +24,8 @@ class ChallengeDataManipulationHelper: NSObject {
         
     }
     
-    class func backgroundImageFromVideo(asset: AVAsset) -> UIImage? {
+    class func backgroundImageFromVideo(videoURL: NSURL) -> UIImage? {
+        let asset = AVAsset(URL: videoURL)
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         imageGenerator.appliesPreferredTrackTransform = true
         do {
