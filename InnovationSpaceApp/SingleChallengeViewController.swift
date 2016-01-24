@@ -10,8 +10,7 @@ import UIKit
 import AVFoundation
 
 class SingleChallengeViewController: UIViewController {
-    
-    @IBOutlet weak var name: UILabel!
+
     @IBOutlet weak var visualEffectViewBackground: UIVisualEffectView!
     @IBOutlet weak var challengeImage: UIImageView!
     @IBOutlet weak var imageViewForBackground: UIImageView!
@@ -35,14 +34,10 @@ class SingleChallengeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let image = UIImage(contentsOfFile: ChallengeDataManipulationHelper.fileInDocumentsDirectory(challengeImageName!))
-        
+        self.navigationController?.topViewController?.title = challengeName
         self.challengeImage.image = image
         challengeImage.transitionImageViewProperties()
         self.imageViewForBackground.image = image
-        
-        //print("challenge image frame at veiw controller \(challengeImage.frame)")
-        self.name.text = challengeName
-        
     }
     
     override func viewWillAppear(animated: Bool) {

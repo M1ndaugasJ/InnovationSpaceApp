@@ -156,6 +156,7 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
                 
                 selectedCellFrame = challengesTableViewController.tableView.convertRect(challengesTableViewController.tableView.rectForRowAtIndexPath(indexPath), toView: challengesTableViewController.tableView.superview)
                 
+                
                 UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0.1, options: .CurveEaseInOut, animations: {
                     
                     view.frame = CGRect(x: 0.0, y: Double(singleChallengeViewController.challengeImage.frame.origin.y), width: Double(singleChallengeViewController.challengeImage.frame.width), height: Double(singleChallengeViewController.challengeImage.frame.height))
@@ -175,10 +176,15 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         }
     }
     
-    private func viewForTransition(image: UIImage, frame: CGRect) -> UIView{
+    private func viewForTransition(image1: UIImage, frame: CGRect) -> UIView{
         let view = UIView(frame: frame)
-        
+        view.contentMode = .Center
+        let image = ChallengeDataManipulationHelper.resizeImage(image1, newWidth: 300)
         let imageView = UIImageView(frame: view.bounds)
+        print("image view frame \(view.bounds)")
+        print("image size \(image.size)")
+        print("image size \(image.scale)")
+        print("image size \(image.renderingMode)")
         imageView.image = image
         imageView.transitionImageViewProperties()
         
@@ -195,6 +201,8 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         return view
     }
     
+
+    
 }
 
 extension UIImageView {
@@ -202,7 +210,7 @@ extension UIImageView {
     func transitionImageViewProperties(){
         clipsToBounds = true
         contentMode = .ScaleAspectFit
-        autoresizingMask = .None
+        //autoresizingMask = .None
     }
     
 }

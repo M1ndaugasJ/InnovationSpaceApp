@@ -86,7 +86,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="300" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AGg-LT-9DA">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="challenge" rowHeight="300" id="kq3-G2-drO" customClass="ChallengesViewCell" customModule="InnovationSpaceApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="300"/>
@@ -187,7 +187,9 @@
                             <constraint firstItem="AGg-LT-9DA" firstAttribute="leading" secondItem="x2I-5M-Avc" secondAttribute="leading" id="Qzh-6w-upm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="M05-bk-ACj"/>
+                    <navigationItem key="navigationItem" id="M05-bk-ACj">
+                        <barButtonItem key="backBarButtonItem" title=" " id="5H6-Vp-OS5"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="AGg-LT-9DA" id="VC5-1R-32j"/>
                     </connections>
@@ -208,13 +210,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqM-x1-kwE">
-                                <rect key="frame" x="153" y="500" width="69" height="36"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbD-eY-xl7">
                                 <rect key="frame" x="146" y="400" width="80" height="30"/>
                                 <state key="normal" title="Lets do this"/>
@@ -273,7 +268,6 @@
                     <connections>
                         <outlet property="challengeImage" destination="eP0-5S-9J1" id="zsY-YV-iHb"/>
                         <outlet property="imageViewForBackground" destination="4Ak-k9-ITJ" id="Swp-6j-22L"/>
-                        <outlet property="name" destination="bqM-x1-kwE" id="lXm-0Q-MPK"/>
                         <outlet property="videoPlayerView" destination="vIJ-Kk-bki" id="1vG-dB-2UT"/>
                         <outlet property="visualEffectViewBackground" destination="IJq-Ib-Ocu" id="ctC-IG-h1Y"/>
                     </connections>

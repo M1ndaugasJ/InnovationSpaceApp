@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         UINavigationBar.appearance().barStyle = .Black
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(22)]
         //let window = application.windows.first
 //        let drawer = window!.rootViewController as! MMDrawerController
 //        drawer.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView

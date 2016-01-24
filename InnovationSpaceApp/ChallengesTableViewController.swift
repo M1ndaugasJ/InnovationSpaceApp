@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ChallengesTableViewController: UIViewController {
+class ChallengesTableViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -36,12 +36,15 @@ class ChallengesTableViewController: UIViewController {
         challenges = fetchSavedChallenges()
         self.navigationController?.topViewController?.title = "Challenges"
         self.tableView.separatorStyle = .None
+        self.tableView.delegate = self
+        let image = UIImage(named: "addButtonWhite")?.imageWithRenderingMode(.AlwaysOriginal)
         
-        addChallengeButtonImageView = UIImageView(image: UIImage(named: "addpng"))
-        addChallengeButtonImageView?.autoresizingMask = .None
-        addChallengeButtonImageView?.contentMode = .Center
+        addChallengeButtonImageView = UIImageView(image: image)
+        //addChallengeButtonImageView?.autoresizingMask = .None
+        
+        addChallengeButtonImageView?.contentMode = .ScaleAspectFit
         let button = UIButton(type: .Custom)
-        button.frame = CGRectMake(0, 0, 40, 40)
+        button.frame = CGRectMake(0, -2, 40, 40)
         
         button.addSubview(addChallengeButtonImageView!)
         button.addTarget(self, action: Selector("openAddChallengeView"), forControlEvents: .TouchUpInside)
@@ -54,7 +57,6 @@ class ChallengesTableViewController: UIViewController {
         
         addChallengeButtonImageView?.center = button.center
         addChallengesBarButtonItem = UIBarButtonItem(customView: button)
-        addChallengesBarButtonItem?.imageInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, -40)
         
         addChallengeView = AddChallengeView(frame: CGRectMake(0, 0, self.view.frame.width, addChallengeHeight))
         self.view.addSubview(addChallengeView!)
@@ -70,6 +72,7 @@ class ChallengesTableViewController: UIViewController {
         }
         
         self.navigationController?.topViewController?.navigationItem.rightBarButtonItem = addChallengesBarButtonItem
+        
         
         self.cameraController = CameraController(
                dismissalHandler: { picker in
@@ -166,10 +169,10 @@ class ChallengesTableViewController: UIViewController {
             }, completion: { finished in
                 print("challenges open \(self.addChallengesViewOpen)")
                 if self.addChallengesViewOpen {
-                    self.addChallengeButtonImageView!.image = UIImage(named: "closepropper")
+                    self.addChallengeButtonImageView!.image = UIImage(named: "closeButtonWhite")
                     self.navigationController?.topViewController?.title = "Add yours"
                 } else {
-                    self.addChallengeButtonImageView!.image = UIImage(named: "addpng")
+                    self.addChallengeButtonImageView!.image = UIImage(named: "addButtonWhite")
                     self.navigationController?.topViewController?.title = "Challenges"
                     
                 }
