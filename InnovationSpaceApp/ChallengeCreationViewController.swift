@@ -48,7 +48,6 @@ class ChallengeCreationViewController: UncoveredContentViewController {
     var blurEffectViewTop: UIVisualEffectView?
     var checkCanPost: Bool = true
     var mainImageColor: UIColor?
-    let dateFormat = "hh:mm:ss_yyyy-MM-dd"
     
     let colorView = UIView()
     var messageFrame = UIView()
@@ -217,25 +216,6 @@ class ChallengeCreationViewController: UncoveredContentViewController {
         
     }
     
-//    func progressBarDisplayer(msg:String, _ indicator:Bool ) {
-//        print(msg)
-//        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
-//        strLabel.text = msg
-//        strLabel.textColor = UIColor.whiteColor()
-//        messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25 , width: 180, height: 50))
-//        messageFrame.layer.cornerRadius = 15
-//        messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
-//        if indicator {
-//            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
-//            activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-//            activityIndicator.startAnimating()
-//            messageFrame.addSubview(activityIndicator)
-//        }
-//        messageFrame.addSubview(strLabel)
-//        view.addSubview(messageFrame)
-//    }
-
-    
     @IBAction func postButtonTouchedInside(sender: UIButton) {
         
         activityIndicator.hidden = false
@@ -257,49 +237,18 @@ class ChallengeCreationViewController: UncoveredContentViewController {
     
     private func saveData(){
         
-        let date = NSDate()
-        let formatter = NSDateFormatter()
         let dataController = DataController()
-        let moc = dataController.managedObjectContext
-        let entity = NSEntityDescription.insertNewObjectForEntityForName("Challenge", inManagedObjectContext: moc) as! Challenge
-        
-        formatter.dateFormat = dateFormat
-        entity.setValue(titleTextField.text, forKey: "challengeTitle")
-        entity.setValue(descriptionText, forKey: "challengeDescription")
+        let dataSaveHelper = DataSaveHelper(moc: dataController.managedObjectContext)
         
         if let videoURL = self.videoURL {
-            let videoData = NSData(contentsOfURL: videoURL)
-            let fileName = "\(formatter.stringFromDate(date)).mov"
-            let videoPath = ChallengeDataManipulationHelper.fileInDocumentsDirectory(fileName)
-            videoData?.writeToFile(videoPath, atomically: true)
-            
-            let image = ChallengeDataManipulationHelper.backgroundImageFromVideo(videoURL)
-            let imageName = "\(formatter.stringFromDate(date)).PNG"
-            let imagePath = ChallengeDataManipulationHelper.fileInDocumentsDirectory(imageName)
-            let data = UIImageJPEGRepresentation(image!, 0.75)
-            data?.writeToFile(imagePath, atomically: false)
-            
-            print(NSFileManager.defaultManager().fileExistsAtPath(imagePath))
-            
-            entity.setValue(imageName, forKey: "imageLocation")
-            entity.setValue(fileName, forKey: "videoLocation")
+            dataSaveHelper.saveNewChallenge(titleTextField.text!, challengeDescription: descriptionText, videoURL: videoURL, challengeImage: nil)
 
         }
+        
         if let challengeImage = self.challengeImage {
-            let fileName = "\(formatter.stringFromDate(date)).PNG"
-            let imagePath = ChallengeDataManipulationHelper.fileInDocumentsDirectory(fileName)
-            let data = UIImageJPEGRepresentation(challengeImage, 0.75)
-            
-            data?.writeToFile(imagePath, atomically: true)
-            
-            entity.setValue(fileName, forKey: "imageLocation")
+            dataSaveHelper.saveNewChallenge(titleTextField.text!, challengeDescription: descriptionText, videoURL: nil, challengeImage:challengeImage)
         }
         
-        do {
-            try moc.save()
-        } catch {
-            fatalError("Failure to save context: \(error)")
-        }
     }
 
 }

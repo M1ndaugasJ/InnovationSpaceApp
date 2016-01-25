@@ -36,7 +36,7 @@
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Sph-Bj-mQC" secondAttribute="height" multiplier="80:21" id="Qc0-xc-MGD"/>
                     </constraints>
-                    <state key="normal" title="Capture"/>
+                    <state key="normal" title="Camera"/>
                     <connections>
                         <action selector="rightButtonTouchedUpInside:" destination="-1" eventType="touchUpInside" id="p3j-Zb-nFh"/>
                     </connections>
@@ -51,10 +51,11 @@
                 <constraint firstItem="RTb-wS-Fv8" firstAttribute="firstBaseline" secondItem="Sph-Bj-mQC" secondAttribute="baseline" id="dOu-gf-9wO"/>
                 <constraint firstItem="RTb-wS-Fv8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="gi2-ar-e42"/>
                 <constraint firstItem="RTb-wS-Fv8" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="kaE-yl-duI"/>
+                <constraint firstAttribute="trailing" secondItem="Sph-Bj-mQC" secondAttribute="trailing" constant="27" id="slY-b4-lK7"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="491.5" y="103"/>
+            <point key="canvasLocation" x="447.5" y="103"/>
         </view>
     </objects>
 </document>

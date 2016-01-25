@@ -45,9 +45,11 @@ class CameraController: NSObject, UIImagePickerControllerDelegate, UINavigationC
                 imagePicker.videoMaximumDuration = 10.0
                 self.presentCameraHandler!()
             } else {
+                print("Rear camera doesn't exist")
                 //postAlert("Rear camera doesn't exist", message: "Application cannot access the camera.")
             }
         } else {
+            print("Camera inaccessible")
             //postAlert("Camera inaccessable", message: "Application cannot access the camera.")
         }
     }
@@ -60,18 +62,6 @@ class CameraController: NSObject, UIImagePickerControllerDelegate, UINavigationC
             self.presentCameraHandler!()
         }
     }
-    
-//    func getDocumentsURL() -> NSURL {
-//        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-//        return documentsURL
-//    }
-//
-//    func fileInDocumentsDirectory(filename: String) -> String {
-//        
-//        let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
-//        return fileURL.path!
-//        
-//    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         

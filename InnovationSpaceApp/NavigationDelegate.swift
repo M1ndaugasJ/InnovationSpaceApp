@@ -57,6 +57,9 @@ class NavigationDelegate: UIPercentDrivenInteractiveTransition, UINavigationCont
     
     func navigationController(navigationController: UINavigationController,
         interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+            guard animationController is Animator else {
+                return nil
+            }
             return self.interactionController
     }
     
@@ -65,6 +68,10 @@ class NavigationDelegate: UIPercentDrivenInteractiveTransition, UINavigationCont
         fromViewController fromVC: UIViewController,
         toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
             self.navigationController?.view.layer.speed = 1.0
+            guard (toVC is SingleChallengeViewController && fromVC is ChallengesTableViewController) ||
+            (toVC is ChallengesTableViewController && fromVC is SingleChallengeViewController) else {
+                return nil
+            }
             return animator
     }
     
@@ -109,7 +116,9 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         context.containerView()!.addSubview(challengesTableViewController.view)
         context.containerView()!.insertSubview(background, belowSubview: challengesTableViewController.view)
         
-        let view = viewForTransition(singleChallengeViewController.challengeImage.image!, frame: singleChallengeViewController.challengeImage.frame)
+        let yCoord = singleChallengeViewController.view.convertRect(singleChallengeViewController.tableView.frame, toView: singleChallengeViewController.view).origin.y
+        
+        let view = viewForTransition(singleChallengeViewController.challengeImage.image!, frame: CGRectMake(0, yCoord, singleChallengeViewController.challengeImage.frame.width, singleChallengeViewController.challengeImage.frame.height))
 
         
         placeholderViewForCellImage.backgroundColor = UIColor.whiteColor()
@@ -159,7 +168,7 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
                 
                 UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0.1, options: .CurveEaseInOut, animations: {
                     
-                    view.frame = CGRect(x: 0.0, y: Double(singleChallengeViewController.challengeImage.frame.origin.y), width: Double(singleChallengeViewController.challengeImage.frame.width), height: Double(singleChallengeViewController.challengeImage.frame.height))
+                    view.frame = CGRect(x: 0.0, y: Double(singleChallengeViewController.view.convertRect(singleChallengeViewController.tableView.frame, toView: singleChallengeViewController.view).origin.y), width: Double(singleChallengeViewController.challengeImage.frame.width), height: Double(singleChallengeViewController.challengeImage.frame.height))
                     view.alpha = 1.0
                     
                     singleChallengeViewController.view.alpha = 1.0
@@ -181,10 +190,6 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         view.contentMode = .Center
         let image = ChallengeDataManipulationHelper.resizeImage(image1, newWidth: 300)
         let imageView = UIImageView(frame: view.bounds)
-        print("image view frame \(view.bounds)")
-        print("image size \(image.size)")
-        print("image size \(image.scale)")
-        print("image size \(image.renderingMode)")
         imageView.image = image
         imageView.transitionImageViewProperties()
         

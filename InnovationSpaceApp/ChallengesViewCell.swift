@@ -16,12 +16,15 @@ class ChallengesViewCell: UITableViewCell {
     @IBOutlet weak var challengeBackgroundVisualEffectView: UIVisualEffectView!
     @IBOutlet weak var wholeContentView: UIView!
     @IBOutlet weak var playbackButtonImageView: UIImageView!
+    @IBOutlet weak var challengeInfoView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         playbackButtonImageView.contentMode = .Center
         playbackButtonImageView.image = UIImage(named: "play")
         playbackButtonImageView.alpha = 0.0
+        challengeInfoView.layer.cornerRadius = 15
+        challengeInfoView.layer.masksToBounds = true
         //self.selectionStyle = .Blue
         //visualEffectView.backgroundColor = UIColor.blackColor()
         challengeImageView.transitionImageViewProperties()

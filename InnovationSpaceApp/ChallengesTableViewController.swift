@@ -12,9 +12,15 @@ import CoreData
 class ChallengesTableViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var viewForNoChallenges: UIView! {
+        didSet {
+            viewForNoChallenges.hidden = true
+        }
+    }
     
     let addChallengeHeight: CGFloat = 70
     let dataController = DataController()
+    var containerViewForChallengeAddition: UIView?
     var addChallengeView: AddChallengeView?
     var challenges: [Challenge] = []
     var addChallengeButtonImageView: UIImageView?
@@ -30,10 +36,16 @@ class ChallengesTableViewController: UIViewController, UITableViewDelegate {
         }
     }
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("challenges did load")
         challenges = fetchSavedChallenges()
+        
+        updateNoChallengesView()
+        
         self.navigationController?.topViewController?.title = "Challenges"
         self.tableView.separatorStyle = .None
         self.tableView.delegate = self
@@ -58,9 +70,33 @@ class ChallengesTableViewController: UIViewController, UITableViewDelegate {
         addChallengeButtonImageView?.center = button.center
         addChallengesBarButtonItem = UIBarButtonItem(customView: button)
         
-        addChallengeView = AddChallengeView(frame: CGRectMake(0, 0, self.view.frame.width, addChallengeHeight))
-        self.view.addSubview(addChallengeView!)
-        self.view.insertSubview(dimmingView!, belowSubview: addChallengeView!)
+        containerViewForChallengeAddition = UIView(frame: CGRectMake(0, 0, self.view.frame.width, addChallengeHeight))
+        //containerViewForChallengeAddition?.backgroundColor = UIColor.belizeHole()
+        
+        addChallengeView = AddChallengeView(frame: (containerViewForChallengeAddition?.bounds)!)
+        addChallengeView?.bounds = (containerViewForChallengeAddition?.bounds)!
+        //addChallengeView?.backgroundColor = UIColor.blackColor()
+        
+
+        print("container view frame \(containerViewForChallengeAddition?.frame)")
+        print("container view bounds \(containerViewForChallengeAddition?.bounds)")
+        print("addChallengeView frame \(addChallengeView?.frame)")
+        print("addChallengeView bounds \(addChallengeView?.bounds)")
+        print("addChallengeView contentView frame \(addChallengeView?.contentView?.frame)")
+        print("addChallengeView contentView bounds \(addChallengeView?.contentView?.bounds)")
+        
+        containerViewForChallengeAddition!.addSubview(addChallengeView!)
+        self.view.addSubview(containerViewForChallengeAddition!)
+        
+        let horizontalTrailingConstraint = NSLayoutConstraint(item: addChallengeView!, attribute: .LeadingMargin, relatedBy: .Equal, toItem: containerViewForChallengeAddition, attribute: .LeadingMargin, multiplier: 1.0, constant: 0)
+        let horizontalLeadingConstraint = NSLayoutConstraint(item: addChallengeView!, attribute: .TrailingMargin, relatedBy: .Equal, toItem: containerViewForChallengeAddition, attribute: .TrailingMargin, multiplier: 1.0, constant: 0)
+        let pinToTop = NSLayoutConstraint(item: addChallengeView!, attribute: .Top, relatedBy: .Equal, toItem: containerViewForChallengeAddition, attribute: .Top, multiplier: 1.0, constant: 0)
+        
+        addChallengeView?.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activateConstraints([horizontalTrailingConstraint,horizontalLeadingConstraint,pinToTop])
+        
+        self.view.insertSubview(dimmingView!, belowSubview: containerViewForChallengeAddition!)
         
         addChallengeView?.alpha = 0
         
@@ -95,6 +131,7 @@ class ChallengesTableViewController: UIViewController, UITableViewDelegate {
                 
                     self.challengeCreationController?.savedChallengeCallback = {
                         self.challenges = self.fetchSavedChallenges()
+                        self.updateNoChallengesView()
                         self.tableView.reloadData()
                     }
                     
@@ -123,7 +160,15 @@ class ChallengesTableViewController: UIViewController, UITableViewDelegate {
         return challenges.count
     }
     
-    
+    private func updateNoChallengesView(){
+        if challenges.count == 0 {
+            viewForNoChallenges.backgroundColor = UIColor.butts()
+            viewForNoChallenges.alpha = 0.9
+            viewForNoChallenges.hidden = false
+        } else {
+            viewForNoChallenges.hidden = true
+        }
+    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("challenge", forIndexPath: indexPath) as! ChallengesViewCell
@@ -159,11 +204,11 @@ class ChallengesTableViewController: UIViewController, UITableViewDelegate {
             if self.addChallengesViewOpen {
                 self.addChallengeView!.alpha = 1
                 self.dimmingView!.alpha = 1
-                self.addChallengeView!.frame.origin.y += self.tableView.contentInset.top
+                self.containerViewForChallengeAddition!.frame.origin.y += self.tableView.contentInset.top
             } else {
                 self.addChallengeView!.alpha = 0
                 self.dimmingView!.alpha = 0
-                self.addChallengeView!.frame.origin.y -= self.tableView.contentInset.top
+                self.containerViewForChallengeAddition!.frame.origin.y -= self.tableView.contentInset.top
                 
             }
             }, completion: { finished in
@@ -187,7 +232,6 @@ class ChallengesTableViewController: UIViewController, UITableViewDelegate {
         
         do {
             let fetchedChallenges = try moc.executeFetchRequest(personFetch) as! [Challenge]
-            //print(fetchedChallenges)
             return fetchedChallenges
         } catch {
             fatalError("Failed to fetch person: \(error)")
@@ -211,11 +255,8 @@ class ChallengesTableViewController: UIViewController, UITableViewDelegate {
             let challengeViewController = segue.destinationViewController as! SingleChallengeViewController
             if let challengeCell = sender as? ChallengesViewCell {
                 let challenge = challenges[(tableView.indexPathForSelectedRow?.row)!]
-                if let videoLocation = challenge.videoLocation {
-                    challengeViewController.videoName = videoLocation
-                }
-                challengeViewController.challengeImageName = challenge.imageLocation!
-                challengeViewController.challengeName = challengeCell.challengeName.text
+                challengeViewController.challenge = challenge
+                challengeViewController.dataController = self.dataController
             }
         }
     }

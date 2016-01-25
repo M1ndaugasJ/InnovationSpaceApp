@@ -16,7 +16,7 @@ class AddChallengeView: UIView {
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
     
-    @IBOutlet private var contentView: UIView?
+    @IBOutlet var contentView: UIView?
     
     var rightButtonCallback: AddChallengeViewRightButtonCallback?
     var leftButtonCallback: AddChallengeViewLeftButtonCallback?
@@ -34,9 +34,11 @@ class AddChallengeView: UIView {
     private func commonInit() {
         NSBundle.mainBundle().loadNibNamed("AddChallengeView", owner: self, options: nil)
         guard let content = contentView else { return }
-        self.addSubview(content)
+        
+        //content.autoresizingMask = [.FlexibleWidth,.FlexibleHeight]
         self.frame = content.frame
         self.bounds = content.bounds
+        self.addSubview(content)
         leftButton.enableButtonStyleNoBackground()
         rightButton.enableButtonStyleNoBackground()
     }

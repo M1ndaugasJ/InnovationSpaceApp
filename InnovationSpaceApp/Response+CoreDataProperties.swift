@@ -1,5 +1,5 @@
 //
-//  User+CoreDataProperties.swift
+//  Response+CoreDataProperties.swift
 //  InnovationSpaceApp
 //
 //  Created by Mindaugas on 1/24/16.
@@ -12,9 +12,11 @@
 import Foundation
 import CoreData
 
-extension User {
+extension Response {
 
-    @NSManaged var attribute: NSNumber?
-    @NSManaged var name: String?
+    @NSManaged var responseVideoFileName: String?
+    @NSManaged var responseImageFileName: String?
+    @NSManaged var title: String?
+    @NSManaged var challenge: Challenge?
 
 }

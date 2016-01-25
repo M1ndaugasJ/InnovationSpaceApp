@@ -8,61 +8,192 @@
 
 import UIKit
 import AVFoundation
+import CoreData
 
-class SingleChallengeViewController: UIViewController {
+class SingleChallengeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var visualEffectViewBackground: UIVisualEffectView!
     @IBOutlet weak var challengeImage: UIImageView!
     @IBOutlet weak var imageViewForBackground: UIImageView!
     @IBOutlet weak var videoPlayerView: UIView!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addResponseButton: UIButton!
+    @IBOutlet weak var bottomControlsView: UIView!
+    @IBOutlet weak var descriptionButton: UIButton!
+    
     
     var challengeName: String?
     var videoName: String?
     var challengeImageName: String?
+    var challenge: Challenge?
+    var responses: [Response]?
     var videoPlayer: VideoPlayController?
+    var cameraController: CameraController?
+    var dataController: DataController?
+    var dataSaveHelper: DataSaveHelper?
+    var saveSuccessBlock: (()->Void)?
+    var viewedResponse: Bool = false
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    init(challengeName: String, challengeImageName: String){
+    init(challenge: Challenge){
         super.init(nibName: nil, bundle: nil)
-        self.challengeName = challengeName
-        self.challengeImageName = challengeImageName
+        self.challenge = challenge
+        self.challengeName = challenge.challengeTitle
+        self.challengeImageName = challenge.imageLocation
+        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let image = UIImage(contentsOfFile: ChallengeDataManipulationHelper.fileInDocumentsDirectory(challengeImageName!))
-        self.navigationController?.topViewController?.title = challengeName
+        let image = UIImage(contentsOfFile: ChallengeDataManipulationHelper.fileInDocumentsDirectory(challenge!.imageLocation!))
+        self.navigationController?.topViewController?.title = challenge!.challengeTitle!
+        
         self.challengeImage.image = image
+        self.responses = challenge?.getChallengeResponses()
+        
+        if let videoLocation = challenge!.videoLocation {
+            self.videoName = videoLocation
+        }
+        
+        saveSuccessBlock = {
+            self.responses = self.challenge?.getChallengeResponses()
+            self.tableView.reloadData()
+        }
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        bottomControlsView.addBorder(edges: .Top, colour: UIColor.placeholderTextColor(), thickness: 0.5)
+        
         challengeImage.transitionImageViewProperties()
         self.imageViewForBackground.image = image
+        self.tableView.contentInset = UIEdgeInsetsMake(0,0,0,0)
+        self.automaticallyAdjustsScrollViewInsets = false
+        setupCameraController()
+        addResponseButton.enabledButtonStyle()
+        descriptionButton.enableButtonStyleNoBackground()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         if let videoName = self.videoName {
             self.challengeImage.hidden = true
-            prepareVideoAsset(NSURL(fileURLWithPath: ChallengeDataManipulationHelper.fileInDocumentsDirectory(videoName)))
+                prepareVideoAsset(NSURL(fileURLWithPath: ChallengeDataManipulationHelper.fileInDocumentsDirectory(videoName)))
         }
-        print("single challenge view will appear")
+        
+        //print("single challenge view will appear")
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         if let videoPlayer = self.videoPlayer {
+            if !viewedResponse {
             videoPlayer.playVideo()
+            }
         }
     }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        //let challengeLoadedImage = UIImage(named: challengeImageName!)
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let responses = self.responses {
+            return responses.count
+        }
+        return 0
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("response", forIndexPath: indexPath) as! ResponseViewCell
+        //let image = UIImage(contentsOfFile: ChallengeDataManipulationHelper.fileInDocumentsDirectory(challenge.imageLocation!))
+        
+        cell.label.text = responses![indexPath.row].title
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("viewResponseSegue", sender: nil)
+    }
+    
+    private func setupCameraController() {
+        dataSaveHelper = DataSaveHelper(moc: (dataController?.managedObjectContext)!)
+        self.cameraController = CameraController(
+            dismissalHandler: { picker in
+                self.dismissViewControllerAnimated(false, completion: {
+                    picker.dismissViewControllerAnimated(true, completion: {})
+                })
+            }, presentCameraHandler: {
+                self.presentViewController(self.cameraController!.imagePicker, animated: true, completion: {
+                })
+            }, dismissCameraWithPicture: { image in
+                print(image)
+                self.saveResponseWithPicture(image)
+                //self.challengeCreationController?.challengeImage = image
+            }, dismissCameraWithVideo: { videoURL in
+                self.saveResponseWithVideo(videoURL)
+                print(videoURL)
+                //(self.challengeCreationController?.videoURL = videoURL)!
+        })
+    }
+    
+    @IBAction func addResponseButtonTouched(sender: UIButton) {
+        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("popoverViewController") as! PopoverViewController
+        menuViewController.modalPresentationStyle = .Popover
+        menuViewController.preferredContentSize = CGSizeMake(375, 70)
+        
+        menuViewController.leftButtonCallback = {
+            print("left")
+            self.dismissViewControllerAnimated(true, completion: nil)
+            self.cameraController?.prepareToChooseFromLibrary()
+            //
+        }
+        
+        menuViewController.rightButtonCallback = {
+            print("right")
+            self.dismissViewControllerAnimated(true, completion: nil)
+            self.cameraController?.prepareForCapture()
+        }
+        
+        let popoverMenuViewController = menuViewController.popoverPresentationController
+        popoverMenuViewController?.permittedArrowDirections = .Any
+        popoverMenuViewController?.delegate = self
+        popoverMenuViewController?.sourceView = sender
+        popoverMenuViewController?.sourceRect = CGRect(x: sender.frame.origin.x/2, y: sender.frame.origin.y-sender.frame.height/2, width: 1,height: 1)
+        presentViewController(menuViewController,animated: true, completion: nil)
+    }
+    
+    private func saveResponseWithVideo(videoURL: NSURL){
+        dataSaveHelper?.saveNewResponse(videoURL, image: ChallengeDataManipulationHelper.backgroundImageFromVideo(videoURL), challenge: self.challenge!, saveSuccess: {
+            self.saveSuccessBlock!()
+        })
+    }
+    
+    
+    @IBAction func descriptionButtonTouched(sender: UIButton) {
+        
+    }
+    
+    private func saveResponseWithPicture(image: UIImage){
+        dataSaveHelper?.saveNewResponse(nil, image: image, challenge: self.challenge!, saveSuccess: {
+            self.saveSuccessBlock!()
+        })
+    }
+    
+    func adaptivePresentationStyleForPresentationController(
+        controller: UIPresentationController) -> UIModalPresentationStyle {
+            return .None
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "viewResponseSegue" {
+            let responseViewController = segue.destinationViewController as! ResponseViewController
+            let response = responses![(tableView.indexPathForSelectedRow?.row)!]
+            responseViewController.response = response
+            self.tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow!, animated: false)
+            viewedResponse = true
+        }
     }
     
     private func prepareVideoAsset(videoURL: NSURL) {
@@ -76,8 +207,5 @@ class SingleChallengeViewController: UIViewController {
         
     }
     
-    @IBAction func iWillTapped(sender: UIButton) {
-        print("i will")
-    }
 
 }
