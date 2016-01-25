@@ -19,7 +19,7 @@ typealias DismissCameraWithVideo = (videoURL: NSURL) -> Void
 
 class CameraController: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    let imagePicker: UIImagePickerController! = UIImagePickerController()
+    var imagePicker: UIImagePickerController! = UIImagePickerController()
     let dismissalHandler: DismissCamera?
     let presentCameraHandler: PresentCamera?
     let dismissCameraWithPicture: DismissCameraWithPicture?
@@ -91,6 +91,10 @@ class CameraController: NSObject, UIImagePickerControllerDelegate, UINavigationC
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         print("User cancelled image picker")
         dismissalHandler!(imagePicker: imagePicker)
+    }
+    
+    deinit {
+        imagePicker = nil
     }
     
 }

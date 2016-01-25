@@ -21,6 +21,7 @@ class SingleChallengeViewController: UIViewController, UITableViewDelegate, UITa
     @IBOutlet weak var addResponseButton: UIButton!
     @IBOutlet weak var bottomControlsView: UIView!
     @IBOutlet weak var descriptionButton: UIButton!
+    @IBOutlet weak var noResponseView: UIView!
     
     
     var challengeName: String?
@@ -51,22 +52,40 @@ class SingleChallengeViewController: UIViewController, UITableViewDelegate, UITa
         super.viewDidLoad()
         let image = UIImage(contentsOfFile: ChallengeDataManipulationHelper.fileInDocumentsDirectory(challenge!.imageLocation!))
         self.navigationController?.topViewController?.title = challenge!.challengeTitle!
+        descriptionButton.enableButtonStyleNoBackground()
         
         self.challengeImage.image = image
         self.responses = challenge?.getChallengeResponses()
+        
+        if (self.responses != nil) && self.responses?.count > 0 {
+            noResponseView.hidden = true
+        }
         
         if let videoLocation = challenge!.videoLocation {
             self.videoName = videoLocation
         }
         
+        if let description = self.challenge!.challengeDescription {
+            let trimmedDesc = description.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            guard trimmedDesc.characters.count > 0 else {
+                descriptionButton.disabledButtonStyle()
+                descriptionButton.enabled = false
+                return
+            }
+        } else {
+            descriptionButton.disabledButtonStyle()
+            descriptionButton.enabled = false
+        }
+        
         saveSuccessBlock = {
             self.responses = self.challenge?.getChallengeResponses()
+            self.noResponseView.hidden = true
             self.tableView.reloadData()
         }
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
+
         bottomControlsView.addBorder(edges: .Top, colour: UIColor.placeholderTextColor(), thickness: 0.5)
         
         challengeImage.transitionImageViewProperties()
@@ -75,7 +94,10 @@ class SingleChallengeViewController: UIViewController, UITableViewDelegate, UITa
         self.automaticallyAdjustsScrollViewInsets = false
         setupCameraController()
         addResponseButton.enabledButtonStyle()
-        descriptionButton.enableButtonStyleNoBackground()
+        
+        let headerViewRect = self.tableView.convertRect(visualEffectViewBackground.bounds, toView: self.tableView.superview)
+        let noResponsesViewRect = CGRectMake(0, headerViewRect.origin.y+headerViewRect.height, self.view.frame.width, bottomControlsView.frame.origin.y - (headerViewRect.height))
+        noResponseView.frame = noResponsesViewRect
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -84,7 +106,6 @@ class SingleChallengeViewController: UIViewController, UITableViewDelegate, UITa
             self.challengeImage.hidden = true
                 prepareVideoAsset(NSURL(fileURLWithPath: ChallengeDataManipulationHelper.fileInDocumentsDirectory(videoName)))
         }
-        
         //print("single challenge view will appear")
     }
     
@@ -172,6 +193,16 @@ class SingleChallengeViewController: UIViewController, UITableViewDelegate, UITa
     
     @IBAction func descriptionButtonTouched(sender: UIButton) {
         
+        let descriptionPopoverViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("descriptionPopoverViewController") as! DescriptionPopoverViewController
+        descriptionPopoverViewController.modalPresentationStyle = .Popover
+        descriptionPopoverViewController.preferredContentSize = CGSizeMake(240, 128)
+        descriptionPopoverViewController.text = challenge?.challengeDescription
+        let popoverMenuViewController = descriptionPopoverViewController.popoverPresentationController
+        popoverMenuViewController?.permittedArrowDirections = .Any
+        popoverMenuViewController?.delegate = self
+        popoverMenuViewController?.sourceView = sender
+        popoverMenuViewController?.sourceRect = sender.frame //CGRect(x: sender.frame.origin.x/2, y: sender.frame.origin.y-sender.frame.height/2, width: 1,height: 1)
+        presentViewController(descriptionPopoverViewController,animated: true, completion: nil)
     }
     
     private func saveResponseWithPicture(image: UIImage){

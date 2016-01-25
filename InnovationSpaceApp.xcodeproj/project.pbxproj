@@ -49,6 +49,8 @@
 		03D9920A1C55694200AFC4F7 /* ResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D992091C55694200AFC4F7 /* ResponseViewController.swift */; };
 		03D9920C1C55778000AFC4F7 /* DataSaveHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9920B1C55778000AFC4F7 /* DataSaveHelper.swift */; };
 		03D9920E1C5598EC00AFC4F7 /* ResponseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9920D1C5598EC00AFC4F7 /* ResponseViewCell.swift */; };
+		03D992121C561F5E00AFC4F7 /* DescriptionPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D992111C561F5E00AFC4F7 /* DescriptionPopoverViewController.swift */; };
+		03D992141C5639B100AFC4F7 /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D992131C5639B100AFC4F7 /* MockDataProvider.swift */; };
 		97F9D0B19FCAB87192ADB052 /* Pods_InnovationSpaceApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A712B83CD9B235C4268A52 /* Pods_InnovationSpaceApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +126,8 @@
 		03D992091C55694200AFC4F7 /* ResponseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseViewController.swift; sourceTree = "<group>"; };
 		03D9920B1C55778000AFC4F7 /* DataSaveHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSaveHelper.swift; sourceTree = "<group>"; };
 		03D9920D1C5598EC00AFC4F7 /* ResponseViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseViewCell.swift; sourceTree = "<group>"; };
+		03D992111C561F5E00AFC4F7 /* DescriptionPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionPopoverViewController.swift; sourceTree = "<group>"; };
+		03D992131C5639B100AFC4F7 /* MockDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDataProvider.swift; sourceTree = "<group>"; };
 		2BCA85E8E6B4D1C9EBE2637B /* Pods-InnovationSpaceApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InnovationSpaceApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InnovationSpaceApp/Pods-InnovationSpaceApp.debug.xcconfig"; sourceTree = "<group>"; };
 		8E8921C4E3D64E97201AC572 /* Pods-InnovationSpaceApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InnovationSpaceApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-InnovationSpaceApp/Pods-InnovationSpaceApp.release.xcconfig"; sourceTree = "<group>"; };
 		B3A712B83CD9B235C4268A52 /* Pods_InnovationSpaceApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InnovationSpaceApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,6 +269,7 @@
 			children = (
 				03CC03241C0326EC00458A05 /* InnovationSpaceAppTests.swift */,
 				03CC03261C0326EC00458A05 /* Info.plist */,
+				03D992131C5639B100AFC4F7 /* MockDataProvider.swift */,
 			);
 			path = InnovationSpaceAppTests;
 			sourceTree = "<group>";
@@ -301,6 +306,7 @@
 				03A133941C552F620026E438 /* PopoverViewController.swift */,
 				03D992091C55694200AFC4F7 /* ResponseViewController.swift */,
 				033083681C063C280065CBFF /* NavigationBarController.swift */,
+				03D992111C561F5E00AFC4F7 /* DescriptionPopoverViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -517,6 +523,7 @@
 				03A133911C518FCB0026E438 /* ChallengeDataManipulationHelper.swift in Sources */,
 				03D992081C55499400AFC4F7 /* Response.swift in Sources */,
 				0374EFD51C2459E200455D46 /* SingleChallengeViewController.swift in Sources */,
+				03D992121C561F5E00AFC4F7 /* DescriptionPopoverViewController.swift in Sources */,
 				03A1336E1C4FABEF0026E438 /* AddChallengeView.swift in Sources */,
 				03CBC6CE1C037C5C001581E5 /* UIViewController+MMDrawerController.m in Sources */,
 				034F716E1C4D33CA00B9251B /* UIButtonExtension.swift in Sources */,
@@ -551,6 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03D992141C5639B100AFC4F7 /* MockDataProvider.swift in Sources */,
 				03CC03251C0326EC00458A05 /* InnovationSpaceAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

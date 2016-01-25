@@ -41,7 +41,7 @@ class ChallengeCreationViewController: UncoveredContentViewController {
     }
     
     var savedChallengeCallback: (()->Void)?
-    var descriptionText: String = ""
+    var descriptionText: String?
     
     var challengeDescriptionViewController: DescriptionViewController?
     var blurEffectView: UIVisualEffectView?
@@ -160,6 +160,10 @@ class ChallengeCreationViewController: UncoveredContentViewController {
             return
         }
         
+        if let description = descriptionText {
+            descriptionViewController.descriptionText = description
+        }
+        
         descriptionViewController.descriptionButtonCallback = {
             enteredText in
             if (enteredText as String).characters.count > 0 {
@@ -167,6 +171,7 @@ class ChallengeCreationViewController: UncoveredContentViewController {
                 self.descriptionText = enteredText
                 self.descriptionButton.enabledButtonActionPerformedStyle()
             } else {
+                self.descriptionText = ""
                 self.descriptionButton.enableButtonStyleNoBackground()
             }
             

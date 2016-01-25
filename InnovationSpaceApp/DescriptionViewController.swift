@@ -18,6 +18,7 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
     
     let placeholderText = "Add a few words about your challenge"
     var descriptionButtonCallback: ((enteredText: String) -> Void)?
+    var descriptionText: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,15 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        //textView.becomeFirstResponder()
+        super.viewWillAppear(true)
+        if let text = descriptionText {
+            guard text != "" else {
+                return
+            }
+            textView.text = text
+            textView.textColor = UIColor.blackColor()
+            doneButton.enabledButtonStyle()
+        }
     }
 
     override func didReceiveMemoryWarning() {

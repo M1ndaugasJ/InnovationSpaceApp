@@ -48,7 +48,7 @@ class DataSaveHelper: NSObject {
         return imageName
     }
     
-    func saveNewChallenge(challengeTitle: String, challengeDescription: String, videoURL: NSURL?, challengeImage: UIImage?){
+    func saveNewChallenge(challengeTitle: String, challengeDescription: String?, videoURL: NSURL?, challengeImage: UIImage?){
         let entity = NSEntityDescription.insertNewObjectForEntityForName("Challenge", inManagedObjectContext: moc!) as! Challenge
         entity.setValue(challengeTitle, forKey: "challengeTitle")
         entity.setValue(challengeDescription, forKey: "challengeDescription")
@@ -82,9 +82,7 @@ class DataSaveHelper: NSObject {
             response.responseVideoFileName = saveVideo(videoURL)
             response.responseImageFileName = saveImageWithData(image!, compressionRatio: 0.75)
             response.title = "User added a video response"
-        }
-        
-        if let image = image {
+        } else if let image = image {
             response.responseImageFileName = saveImageWithData(image, compressionRatio: 0.75)
             response.title = "User added a photo response"
         }

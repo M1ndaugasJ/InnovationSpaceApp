@@ -25,8 +25,6 @@ class ChallengesViewCell: UITableViewCell {
         playbackButtonImageView.alpha = 0.0
         challengeInfoView.layer.cornerRadius = 15
         challengeInfoView.layer.masksToBounds = true
-        //self.selectionStyle = .Blue
-        //visualEffectView.backgroundColor = UIColor.blackColor()
         challengeImageView.transitionImageViewProperties()
         self.layoutMargins = UIEdgeInsetsZero
         self.preservesSuperviewLayoutMargins = false

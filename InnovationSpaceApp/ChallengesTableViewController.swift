@@ -36,9 +36,6 @@ class ChallengesTableViewController: UIViewController, UITableViewDelegate {
         }
     }
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("challenges did load")
@@ -212,8 +209,9 @@ class ChallengesTableViewController: UIViewController, UITableViewDelegate {
                 
             }
             }, completion: { finished in
-                print("challenges open \(self.addChallengesViewOpen)")
+                //print("challenges open \(self.addChallengesViewOpen)")
                 if self.addChallengesViewOpen {
+                    
                     self.addChallengeButtonImageView!.image = UIImage(named: "closeButtonWhite")
                     self.navigationController?.topViewController?.title = "Add yours"
                 } else {

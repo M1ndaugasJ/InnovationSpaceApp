@@ -26,10 +26,10 @@ class NavigationBarController: UINavigationController {
     func addButton(){
     
 //        let barButtonItem : UIBarButtonItem = UIBarButtonItem(title: "Menu", style: UIBarButtonItemStyle.Plain, target: self, action: "clicked")
-        let image : UIImage? = UIImage(named:"menupng")!.imageWithRenderingMode(.AlwaysOriginal)
-        let barButtonItem : UIBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: self, action: "clicked")
-        
-        self.topViewController!.navigationItem.leftBarButtonItem = barButtonItem
+//        let image : UIImage? = UIImage(named:"menupng")!.imageWithRenderingMode(.AlwaysOriginal)
+//        let barButtonItem : UIBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: self, action: "clicked")
+//        
+//        self.topViewController!.navigationItem.leftBarButtonItem = barButtonItem
         
     }
     
